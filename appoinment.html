@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<title>Property</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/functionspropertyajax.js"></script>
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+<link rel="stylesheet" href="css/app_property.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+  <!-- <link rel="stylesheet" href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.css" />
+  <script src="https://rawgithub.com/jquery/jquery-ui/1-10-stable/ui/jquery.ui.datepicker.js"></script>
+  <script src="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.js"></script> -->
+  <link rel="stylesheet" href="css/jquery.mobile.datepicker.css" />
+  <script type="text/javascript" src="js/jquery.ui.datepicker.js"></script>
+  <script type="text/javascript" src="js/jquery.mobile.datepicker.js"></script>
+  <script type="text/javascript">
+	$(document).ready(function(){
+		$(".viewapncnt").hide();
+		$(".viewbtn").click(function(){
+		  $(".viewapncnt").slideToggle();
+			});
+		});
+</script>
+</head>
+<body>
+<div data-role="page" id="appoinment" class="ui-responsive-panel">
+	<header class="header-stn"  data-role="header" data-position="fixed">
+		<!-- <a href="javascript:history.back()" class="hddiv ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all goback"></a> -->
+		<a href="#nav-panel" class="hddiv slide_menu bar" data-icon="bars" data-ajax="false"></a>
+		<div class="apn_brf hddiv div">
+			<a href="postproperty.html" class="appoin_brf" data-ajax="false"><span></span></a>
+		</div>
+		<div class="apn_apnt hddiv div">
+			<a href="chat.html" class="appoin_apnt" title="chat" data-ajax="false"><span></span></a>
+		</div>
+		<div class="apn_ple hddiv div">
+			<a href="aboutus.html" class="appoin_ple" title="myprofile" data-ajax="false"><span></span></a>
+		</div>
+		<a href="newproperty.html" class="slide_menu plus" data-icon="plus" data-ajax="false"></a>
+		<div class="clearing"></div>
+	</header>
+	<section data-role="content" class="content-container" style="padding:0px;">
+	<script type="text/javascript">
+	$(document).on('blur', 'input, textarea', function() {
+	    setTimeout(function() {
+	        window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+	    }, 0);
+	});
+	</script>
+<div class="viewapnt">
+	<button class="viewbtn">view appoinment</button>
+	<div class="viewapncnt">
+		<div class="viewapndet">
+			<div class="profimg"><img src="images/profile/1.png"/></div>
+			<div class="usrdet"><h4>ANNE JOHN</h4>
+				<p class="comment">lorem ipsun sample text</p>
+				<p class="dtetme">Aug 14, 2014 12.00 PM</p>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+<div class="calan">
+	<div class="calan_1">
+		<script type="text/javascript">
+			var mydate=new Date()
+			var year=mydate.getYear()
+			if (year < 1000)
+			year+=1900
+			var day=mydate.getDay()
+			var month=mydate.getMonth()
+			var daym=mydate.getDate()
+			if (daym<10)
+			daym="0"+daym
+			var dayarray=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+			var montharray=new Array("January","February","March","April","May","June","July","August","September","October","November","December")
+			document.write("<small><font color='000000' face='Arial'><p class='date_cal'>"+daym+"</p><span class='day_cal'>"+dayarray[day]+"&nbsp;"+daym+"</span></font></small>")
+		</script>
+	</div>
+	<div class="cal">
+		<input type="text" id="date-input" data-inline="true" data-role="date">
+	</div>
+	<div class="clear"></div>
+</div>
+		<div class="apnt_tle">Make An Appointment</div>
+		<div class="appoinment_form">
+			<div class="datetime">
+				<div class="date">
+					<input type="date" value="Date" onblur="if(this.value == '') { this.value='Date'}" onfocus="if (this.value == 'Date') {this.value=''}">
+					<span></span> 
+				</div>
+				<div class="time">
+					<input type="time" value="Time" onblur="if(this.value == '') { this.value='Time'}" onfocus="if (this.value == 'Time') {this.value=''}">
+					<span></span>
+				</div>
+				<div class="clearing"></div>
+			</div>
+			<div class="apnt_det">
+				<div class="uname">
+					<input type="text" value="Name" onblur="if(this.value == '') { this.value='Name'}" onfocus="if (this.value == 'Name') {this.value=''}">
+					<span></span>	
+				</div>
+				<div class="email">
+					<input type="email" name="email" value="Email" onblur="if(this.value == '') { this.value='Email'}" onfocus="if (this.value == 'Email') {this.value=''}">
+					<span></span>
+				</div>
+				<div class="phoneno">
+					<input type="text" value="Phone No." onblur="if(this.value == '') { this.value='Phone No.'}" onfocus="if (this.value == 'Phone No.') {this.value=''}">
+					<span></span>
+				</div>
+				<div class="sub">
+					<input type="text" value="Subject" onblur="if(this.value == '') { this.value='Subject'}" onfocus="if (this.value == 'Subject') {this.value=''}">
+					<span></span>
+				</div>
+				<div class="remarks">
+					<textarea placeholder="Remarks" style="padding-left:35px;"></textarea>
+					<span></span>
+				</div>	
+			</div>
+					
+		</div>
+	</section>
+	<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="nav-panel" class="navpan">
+		<div class="myprf">
+			<div class="img"><img src="images/profile/1.png"/></div>
+			<div class="name">Albert</div><div class="clear"></div>	
+		</div>
+		<ul data-role="listview" class="clpslst">
+			<li><a href="postproperty.html" data-ajax="false">Property Listings</a></li>
+			<li><a href="managelist.html">Manage Listing</a></li>
+			<li><a href="messages.html">Messages</a></li>
+			<li><a href="apoinment.html">Make an Appoinment</a></li>
+			<li><a href="news.html">News</a></li>
+		</ul>
+		<div class="appshare" data-role="collapsible" data-iconpos="right"><h3>APPS</h3>
+	   		<ul data-role="listview"><li><a href="#popupCloseRight" data-rel="popup">share</a><span class="autop"></span></li><li><a>autopost</a><span class="share"></span></li></ul>
+		</div>
+		<div class="navprof" data-role="collapsible" data-iconpos="right"><h3>Profile</h3>
+	   		<ul data-role="listview"><li><a>account settings</a></li><li><a>logout</a></li></ul>
+		</div>
+		<div data-role="popup" id="popupCloseRight" class="ui-content" style="width:250px">
+	    	<a href="#" data-rel="back" class="closemail ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	    	<input type="text" placeholder="enter the email id..."/>
+	    	<a class="sendmail" href="#"><span class="iconmail ui-btn-icon-notext ui-icon-mail"></span><span class="sendtxt">Send</span></a>
+		</div>
+	</div>
+	<footer data-role="footer" data-position="fixed"><button onclick="window.location='postproperty.html';">Submit</button></footer>
+</div>
+
+</body>
+</html>

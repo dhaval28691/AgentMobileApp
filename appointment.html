@@ -1,0 +1,788 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<title>Property</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/functionspropertyajax.js"></script>
+
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+<link rel="stylesheet" href="css/app_property.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+  <!-- <link rel="stylesheet" href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.css" />
+  <script src="https://rawgithub.com/jquery/jquery-ui/1-10-stable/ui/jquery.ui.datepicker.js"></script>
+  <script src="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.js"></script> -->
+ 
+ 
+ <!--  <link rel="stylesheet" href="css/jquery.mobile.datepicker.css" />
+  <script type="text/javascript" src="js/jquery.ui.datepicker.js"></script>
+  <script type="text/javascript" src="js/jquery.mobile.datepicker.js"></script> -->
+  
+
+<link rel="stylesheet" href="css/jw-jqm-cal.css" />
+<!--  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+<script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script> -->
+<script type="text/javascript" src="js/jw-jqm-cal.js"></script>
+  
+  <script type="text/javascript"> 
+  eventsArray = []; 
+  var date = new Date();
+  var d = date.getDate();
+  var m = date.getMonth();
+  var y = date.getFullYear();
+	$(document).ready(function(){
+		$(".viewapncnt").hide();
+		$(".viewbtn").click(function(){
+		  $(".viewapncnt").slideToggle();
+			});
+		});
+</script>
+<script type="text/javascript">
+/*
+ 
+ $("#view-calendar").live('pageinit', function(event, ui) {
+   $("#calendar").jqmCalendar({
+      events : [ { "summary" : "Test event", "begin" : new Date("2013-02-05 00:00:00"), "end" : new Date("2013-02-07 00:00:00") }, { "summary" : "Test event", "begin" : new Date(), "end" : new Date() }, { "summary" : "Test event", "begin" : new Date(), "end" : new Date() } ],
+      months : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      days : ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+      startOfWeek : 0
+   });
+})
+*/
+$(document).on('pageinit', '#appoinment', function(){ 
+   
+    
+   
+    eventsArray.push({"summary": "","begin": new Date(y,m,d), "end": new Date(y, m,d)});
+    
+    getblockeddates();
+   
+
+    $("#calendar").jqmCalendar({
+        events: eventsArray,
+       	months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        days: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+        startOfWeek: 0
+        
+    });
+});
+function getblockeddates()
+{
+	$.ajax({
+			type: "POST",
+			url: baseurl()+"/WS/p_request.php?action=getblockeddates",  //local & server
+			//data:"&id="+userid,
+		    dataType: "json",
+			async: 'true',
+			success: function(msg) {     
+			    if(msg.Result=="Success")   //message from response
+			    {
+			    	 var json =msg.recordn;
+				    
+				      // $.mobile.changePage("propertydetails.html",{data1:json});   //,reqid:json_req}
+				     //   $( document ).on( "pagebeforechange" , function ( event, data ) {
+				        	
+				     //   if ( data.toPage[0].id == "propertyadetails" ) {
+				 	 // var stuff3 = data.options.data1;
+				 	      var stuff3=json;
+				 	    
+				 	   
+				 	     var data=[];
+				 	     var getdate=[];
+				 	  
+				 	      
+				 	       $.each(stuff3, function(idx, obj) {
+				 	         	var blockdate=obj.blockdate;
+				 	        	var timeblock=obj.timeblock;
+				 	        	//getdate=blockdate;
+				 	        	//alert(blockdate);
+				 	        	//var CDate = (new Date(blockdate)).format("y,m,d");
+				 	        
+				 	        //	var CDate=Date.parseDate(blockdate, "y,m,d");
+				 	        	//alert(CDate);
+				 	        	var date = new Date(blockdate);
+				 	        	  var d = date.getDate();
+				 	        	  var m = date.getMonth();
+				 	        	  var y = date.getFullYear();
+				 	        	  
+				 	        	eventsArray.push({ "summary" : "Test event", "begin" : new Date(y,m,d), "end" : new Date(y,m,d) }); 
+				 	        // Trigger refresh
+				 	        $('#calendar').trigger('refresh');
+				 	        	
+				 	        	
+				 	      });   //each 
+
+				 	      
+				 	    //  setCookie('getdate',JSON.stringify(getdate));
+				 	     
+			     
+			    }
+			    else
+			    {
+			    	 //alert("No any dates blocked!");
+			         
+			        
+			    }
+
+			                        },
+			error: function (xhr, ajaxOptions, thrownError) {
+			//alert(xhr.status);
+			//alert(thrownError);
+			alert("Sorry! network problem");    
+			window.location.assign(baseurl()+"/index.html");
+			}
+
+
+
+			});
+
+	
+
+}
+</script>
+</head>
+<body>
+<script>
+  $(document).on({
+          ajaxStart: function() { 
+            $.mobile.loading('show');
+            console.log('getJSON starts...');
+          },
+          ajaxStop: function() {
+            $.mobile.loading('hide');
+            console.log('getJSON ends...');
+          }    
+        });
+</script>
+<div data-role="page" id="appoinment" class="ui-responsive-panel">
+	<header class="header-stn"  data-role="header" data-position="fixed">
+		<!-- <a href="javascript:history.back()" class="hddiv ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all goback"></a> -->
+		<a href="#nav-panel" class="hddiv slide_menu bar" data-icon="bars" data-ajax="false"></a>
+		<div class="apn_brf hddiv div">
+			<a href="#" class="appoin_brf" data-ajax="false" id="propertylist"><span></span></a>
+		</div>
+		<div class="apn_apnt hddiv div">
+			<a href="#" class="appoin_apnt" title="chat" data-ajax="false" id="testmsg"><span></span></a>
+		</div>
+		<div class="apn_ple hddiv div">
+			<a href="#" class="appoin_ple" title="aboutus" data-ajax="false" id="about1"><span></span></a>
+		</div>
+		<a href="#" class="slide_menu plus" data-icon="plus" data-ajax="false"  id="testnewprop1"></a>
+		<div class="clearing"></div>
+	</header>
+	<section data-role="content" class="content-container" style="padding:0px;">
+	<script type="text/javascript">
+	$(document).on('blur', 'input, textarea', function() {
+	    setTimeout(function() {
+	        window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+	    }, 0);
+	});
+	</script>
+<div class="viewapnt">
+	<button class="viewbtn" id="viewappointment">view Appointment</button>
+	
+	<!--
+	<div class="viewapncnt">
+		<div class="viewapndet">
+			<div class="profimg"><img src="images/profile/1.png"/></div>
+			<div class="usrdet"><h4>ANNE JOHN</h4>
+				<p class="comment">lorem ipsun sample text</p>
+				<p class="dtetme">Aug 14, 2014 12.00 PM</p>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	  -->
+	
+</div>
+
+<!--  
+<div class="calan">
+	<div class="calan_1">
+		<script type="text/javascript">
+			var mydate=new Date()
+			var year=mydate.getYear()
+			if (year < 1000)
+			year+=1900
+			var day=mydate.getDay()
+			var month=mydate.getMonth()
+			var daym=mydate.getDate()
+			if (daym<10)
+			daym="0"+daym
+			var dayarray=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+			var montharray=new Array("January","February","March","April","May","June","July","August","September","October","November","December")
+			document.write("<small><font color='000000' face='Arial'><p class='date_cal'>"+daym+"</p><span class='day_cal'>"+dayarray[day]+"&nbsp;"+daym+"</span></font></small>")
+		</script>
+	</div>
+	<div class="cal">
+		<input type="text" id="date-input" data-inline="true" data-role="date">
+	</div>
+	<div class="clear"></div>
+</div>
+-->
+  <div>
+                <div id="calendar"></div>
+  </div>
+            
+		<div class="apnt_tle">Make An Appointment</div>
+		<div class="appoinment_form">
+			<div class="datetime">
+				<div class="date">
+					<input type="date" value="" id="dateappoint" Placeholder="Date">
+					<span></span> 
+				</div>
+				<div class="time">
+					<input type="time" value="" id="timeappoint" Placeholder="Time">
+					<span></span>
+				</div>
+				<div class="clearing"></div>
+			</div>
+			<div class="apnt_det">
+				<div class="uname">
+					<input type="text" value="" id="nameappoint" Placeholder="Name">
+					<span></span>	
+				</div>
+				<div class="email">
+					<input type="email" name="email"  id="emailappoint" value="" Placeholder="Email">
+					<span></span>
+				</div>
+				<div class="phoneno">
+					<input type="text" value="" id="phoneappoint"  Placeholder="Phone No.">
+					<span></span>
+				</div>
+				<div class="sub">
+					<input type="text" value=""  id="subappoint" Placeholder="Subject">
+					<span></span>
+				</div>
+				<div class="remarks">
+					<textarea placeholder="Remarks" id="remarks" Placeholder="Reamrks"  style="padding-left:35px;"></textarea>
+					<span></span>
+				</div>	
+				<div class="remarks">
+					<p>Note:If the time is blocked,After one hour from the blocked time only you can able to make an appointment.</p>
+				</div>	
+			</div>
+					
+		</div>
+	</section>
+	<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="nav-panel" class="navpan">
+		<div class="myprf">
+			<div class="img" class="img1"></div>
+			<div class="name"></div><div class="clear"></div>	
+		</div>
+		<ul data-role="listview" class="clpslst">
+			<li><a href="#" class="postpropertylist" data-ajax="false">Property Listings</a></li>
+			<li><a href="#" class="managelist">Manage Listing</a></li>
+			<li><a href="#" class="messages">Messages</a></li>
+			<li><a href="#" class="appointment">Make an Appointment</a></li>
+			<li><a href="#" class="news">News</a></li>
+		</ul>
+		<div class="appshare" id="appshareroot" data-role="collapsible" data-iconpos="right"><h3>APPS</h3>
+	   		<ul data-role="listview"><li id="appshare1"><a href="#popupCloseRight" data-rel="popup">share</a><span class="autop"></span></li><li id="apppost1"><a>autopost</a><span class="share"></span></li></ul>
+		</div>
+		<div class="navprof" id="profile" data-role="collapsible" data-iconpos="right"><h3>Profile</h3>
+	   		<ul data-role="listview"><li id="profile1"><a>account settings</a></li><li id="logoutpp"><a>logout</a></li><li id="exitpp"><a>Exit</a></li></ul>
+		</div>
+		<div data-role="popup" id="popupCloseRight" class="ui-content" style="width:250px">
+	    	<a href="#" data-rel="back" class="closemail ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	    	<input type="text" id="emailshare1" placeholder="enter the email id..."/>
+	    	<a class="sendmail" href="#"><span class="iconmail ui-btn-icon-notext ui-icon-mail"></span><span class="sendtxt">Send</span></a>
+		</div>
+	</div>
+	<footer data-role="footer" data-position="fixed"><button id="submitappoint">Submit</button><button id="submitappoint1">Block Submit</button></footer> <!--  onclick="window.location='postproperty.html';" -->
+</div>
+
+</body>
+</html>
+<script type="text/javascript"> 
+$(document).ready(function(){
+	setCookie('timeappoints','');
+    setCookie('dateappoints','');
+    $("#dateappoint").val('');
+	$("#timeappoint").val('');
+    /*
+	$(".cal .ui-state-default").click(function(){
+		//alert("123");
+		//alert(dayarray[day]);
+		var dateappoint=$("#dateappoint").val();
+		//alert(dateappoint);
+	});
+	*/
+	
+
+	/*
+	$(".ui-state-default").click(function(){
+		alert("123");
+	});
+	*/
+	 
+    /*
+	$(".ui-state-default").bind("change",call);
+	function call()
+	{
+		alert("123");
+	}
+	*/
+	
+	var userid=getCookie('useridset');
+
+	if(userid=="" || userid==null)
+		{
+		 alert("Sorry your login expired!");
+		 window.location.assign(baseurl()+"/index.html");
+		}
+
+
+	////block view appoint for others, only agent can view...............
+	var loginas=getCookie('loginas');
+	if(loginas=='agent')
+	{
+		$('#viewappointment').css('display', 'block');
+		$('.apnt_det').css('display', 'none');
+		$('#submitappoint').css('display', 'none');
+		$('#submitappoint1').css('display', 'block');
+		$('div.apnt_tle').html("Block the Date in Appointment");
+		
+	}
+	else
+	{
+		$('#viewappointment').css('display', 'none');
+		$('.apnt_det').css('display', 'block');
+		$('#submitappoint').css('display', 'block');
+		$('#submitappoint1').css('display', 'none');
+	}
+  ////////////////////////
+if(loginas=='agent')
+{
+	  var dateappoint=$("#dateappoint").val();
+	   var timeappoint=$("#timeappoint").val();
+	   $('#dateappoint').change(function(){ 
+
+			var dateappoint1=$(this).val();
+	   if(dateappoint1!="")
+		{
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0!
+			var yyyy = today.getFullYear();
+
+			if(dd<10) {
+			    dd='0'+dd
+			} 
+
+			if(mm<10) {
+			    mm='0'+mm
+			} 
+
+			//today = mm+'/'+dd+'/'+yyyy;
+			today = yyyy+'-'+mm+'-'+dd;
+			
+			if(dateappoint1<today)
+			{
+				alert("Sorry! your chosen invalid past date");
+				$("#dateappoint").val(''); 
+			    return false;
+			}
+		}
+	   });
+}
+  if(loginas=='guest' || loginas=='registeruser')
+  {
+   ///check whether date is free or blocked (2 cond) db booked or agent blocked..........
+	   var dateappoint=$("#dateappoint").val();
+	   var timeappoint=$("#timeappoint").val();
+		//alert(timeappoint);
+		
+		if(timeappoint!="")
+		{setCookie('timeappoints',timeappoint);}
+		
+		
+	$('#dateappoint').change(function(){ 
+
+    //$('#dateappoint').bind('input',function(){   //at last the correct one...
+	//$("#dateappoint").click(function(){
+    //$('#dateappoint').change(function() {  //change is not working..........
+    //$("#dateappoint").bind("change",dateappoint){
+	//alert($(this).val());
+	var dateappoint1=$(this).val();
+	///se
+	if(dateappoint1!=""){setCookie('dateappoints',dateappoint1);}   ///se
+	if(timeappoint!="")
+	{
+	var timeappoint=getCookie('timeappoints');
+	}
+	else
+	{
+		var timeappoint="";
+	}
+	//var timeappoint=$(this).val();
+	
+	if(dateappoint1!="")
+	{
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+
+		if(dd<10) {
+		    dd='0'+dd
+		} 
+
+		if(mm<10) {
+		    mm='0'+mm
+		} 
+
+		//today = mm+'/'+dd+'/'+yyyy;
+		today = yyyy+'-'+mm+'-'+dd;
+		
+		if(dateappoint1<today)
+		{
+			alert("Sorry! your chosen invalid past date");
+			$("#dateappoint").val(''); 
+		    return false;
+		}
+		//alert("9000");
+		//timeappoint=getCookie('timeappoint');
+	//var timeappoint=getCookie('timeappoints');
+		checkdateblock(dateappoint1,timeappoint);
+	}
+	});
+	/////////
+	$('#timeappoint').change(function(){ 
+
+    //$('#dateappoint').bind('input',function(){   //at last the correct one...
+	//$("#dateappoint").click(function(){
+    //$('#dateappoint').change(function() {  //change is not working..........
+    //$("#dateappoint").bind("change",dateappoint){
+	//alert($(this).val());
+	var timeappoint1=$(this).val();
+	if(timeappoint1!="")
+	{setCookie('timeappoints',timeappoint1);}
+	
+		
+	var dateappoint=getCookie('dateappoints');
+	
+	
+	//var timeappoint=$(this).val();
+	
+	if(timeappoint1!="")
+	{
+		
+	
+		checkdateblock(dateappoint,timeappoint1);
+	}
+	});
+	/////////
+  }
+
+  
+	
+	///appoint submit................
+	$("#submitappoint").click(function(){
+
+		var dateappoint=$("#dateappoint").val();
+		var timeappoint=$("#timeappoint").val();
+		var nameappoint=$("#nameappoint").val();
+		var emailappoint=$("#emailappoint").val();
+		var phoneappoint=$("#phoneappoint").val();
+		var subappoint=$("#subappoint").val();
+		var remarks=$("#remarks").val();
+		var userimageset=getCookie('userimageset');
+		if(userimageset){userimageset=userimageset;}else{userimageset="";}
+		  if(dateappoint=="")
+			{
+			   alert("Appointment Date should not be empty!");
+			   var dateappoint1 = document.getElementById('dateappoint');
+			   dateappoint1.focus;
+			   return false;	
+			}
+		/*  else if(timeappoint=="")
+			{
+			   alert("Appointment Time should not be empty!");
+			   var timeappoint1 = document.getElementById('timeappoint');
+			   timeappoint1.focus;
+			   return false;	
+			} */
+		  else if(nameappoint=="")
+			{
+			   
+			    alert("Name should not be empty!");
+			    var nameappoint1 = document.getElementById('nameappoint');
+			    nameappoint1.focus;
+			   return false;	
+			}
+		  else if(emailappoint=="")
+			{
+			   
+			    alert("Email should not be empty!");
+			    var emailappoint1 = document.getElementById('emailappoint');
+			   emailappoint1.focus;
+			   return false;	
+			}
+			
+		  else if(phoneappoint=="")
+			{
+			   
+			    alert("Phone should not be empty!");
+			    var phoneappoint1 = document.getElementById('phoneappoint');
+			    phoneappoint1.focus;
+			    return false;	
+			}
+		 
+		  else if(subappoint=="")
+			{
+			   
+			    alert("Subject for appointment should not be empty!");
+			    var subappoint1 = document.getElementById('subappoint');
+			    subappoint1.focus;
+			   return false;	
+			}
+		  else if(remarks=="")
+			{
+			   
+			    alert("Remarks for appointment should not be empty!");
+			    var remarks1 = document.getElementById('remarks');
+			    remarks1.focus;
+			   return false;	
+			}
+		  else if(emailappoint!="")
+			{
+				    var emailappoint1 = document.getElementById('emailappoint');
+				    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			         if (!filter.test(emailappoint1.value)) {
+				    alert('Please provide a valid email address');
+				    emailappoint1.focus;
+				    return false;
+			         }
+			        
+			}
+		  else if(phoneappoint!="")
+		   {
+		      var phoneappoint1 = document.getElementById('phoneappoint');
+		      var phoneappoint2 = /^\d{10}$/;  
+		      if(!phoneappoint1.value.match(phoneappoint2))  
+		      {  
+		      alert("Please enter the valid phone number!");  
+		      phoneappoint1.focus;
+		      return false;  
+		      }  
+		   }
+		  if(phoneappoint!="")
+		  {
+		  	// var stripped = phone.replace(/[\(\)\.\-\ ]/g, '');    
+
+		  	  
+		  	   if (isNaN(phoneappoint)) {
+		  	        alert("The phone number contains illegal characters!");
+		  	      phoneappoint.focus;
+		  	        return false;
+		  	    }
+		  	   else if(!(phoneappoint.length==10))
+		  	   {
+		  	        alert("The phone number must contains 10 numbers!");
+		  	      phoneappoint.focus;
+		  	        return false;
+		  	   }
+		  	    
+		  }
+		  $.ajax({
+			  type: "POST",
+			  url: baseurl()+"/WS/p_request.php?action=appointment_submit",  //local & server
+			  data: "dateappoint="+dateappoint+"&nameappoint="+nameappoint+"&emailappoint="+emailappoint+"&phoneappoint="+phoneappoint+"&subappoint="+subappoint+"&remarks="+remarks+"&image="+userimageset,
+			  dataType: "json",
+			  async: 'true',
+			  success: function(msg) {     
+			      if(msg.Result=="Success")   //message from response
+			      {
+			      
+			      	 
+			        alert("successfully send your appointment details to agent.");
+			        window.location.assign(baseurl()+"/postproperty.html");
+			      }
+			      else
+			      {
+			      	   alert("Wrong details");
+			           $.mobile.changePage("appointment.html");   //failure
+			      }
+
+			                          },
+			   error: function (xhr, ajaxOptions, thrownError) {
+			   alert("Sorry! network problem");   
+			   window.location.assign(baseurl()+"/index.html"); 
+			  }
+
+
+
+			  });
+	});
+	///apointment form for reg and guest users............
+
+	
+	
+	
+	///block  submit by agent................
+	$("#submitappoint1").click(function(){
+
+		var dateappoint=$("#dateappoint").val();
+		var timeappoint=$("#timeappoint").val();
+
+		
+		var val=timeappoint.split(" ");
+		if(val[1]!=undefined){
+		var time=(val[0]).split(":");
+		if(val[1]=='pm'){
+			time[0]=parseInt(time[0])+12;
+		}
+		timeappoint=time[0]+":"+time[1]+":00";
+		}
+		if(timeappoint==""){timeappoint="00:00:00";}
+		//var timeappoint=timeappoint+":00";
+		//timeappoint="11:01:00";
+
+	
+		if(timeappoint==""){timeappoint="00:00:00";}
+		//var timeappoint=timeappoint+":00";
+	
+		  if(dateappoint=="")
+			{
+			   alert("Appointment Date should not be empty!");
+			   var dateappoint1 = document.getElementById('dateappoint');
+			   dateappoint1.focus;
+			   return false;	
+			}
+		/*  else if(timeappoint=="")
+			{
+			   alert("Appointment Time should not be empty!");
+			   var timeappoint1 = document.getElementById('timeappoint');
+			   timeappoint1.focus;
+			   return false;	
+			} */
+		// alert(timeappoint); 
+		  $.ajax({
+			  type: "POST",
+			  url: baseurl()+"/WS/p_request.php?action=appointmentblock_submit",  //local & server
+			  data: "dateappoint="+dateappoint+"&timeappoint="+timeappoint,
+			  dataType: "json",
+			  async: 'true',
+			  success: function(msg) {     
+			      if(msg.Result=="Success")   //message from response
+			      {
+			      
+			    
+			        alert("successfully blocked the date");  //+msg.timeblock
+			        window.location.assign(baseurl()+"/postproperty.html");
+			      }
+			      else
+			      {
+			      	   //alert("Wrong details");
+			      	   alert("sorry this date/time is already blocked!");
+			      	   return false;
+			          // $.mobile.changePage("appointment.html");   //failure
+			      }
+
+			                          },
+			   error: function (xhr, ajaxOptions, thrownError) {
+			   alert("Sorry! network problem");   
+			   window.location.assign(baseurl()+"/index.html"); 
+			  }
+
+
+
+			  });
+	});
+	///block apointment form for agent users............
+	
+	
+	
+	
+	//view appointment redirection..............
+	$("#viewappointment").click(function(){
+		window.location.assign(baseurl()+"/viewappointment.html"); 
+	});
+	//
+});
+
+
+///check block or not............
+function checkdateblock(dateappoint,timeappoint)
+{
+	
+	var dateappoint=dateappoint;
+	var timeappoint=timeappoint;
+	if(timeappoint==""){timeappoint="00:00:00";}
+	//alert(dateappoint);
+	//alert(timeappoint);
+    //alert(dateappoint);
+	$.ajax({
+		type: "POST",
+		url: baseurl()+"/WS/p_request.php?action=getallappointmentswithdate",  //local & server
+		data:"dateappoint="+dateappoint+"&timeappoint="+timeappoint,
+	    dataType: "json",
+		async: 'true',
+		success: function(msg) {     
+		    if(msg.Result=="Success")   //message from response
+		    {
+		    	  var json =msg.recordn;
+		    	  var json1 =msg.recordn1;
+		    	  
+		    	//  if(json)
+		    	//  { alert("Sorry! this date is booked by some one,Please choose other one.");
+		    	//  $("#dateappoint").val(''); }
+		    	  if(json1)
+		    	  { 
+		    		  var data=[];
+		    		  $.each(json1, function(idx, obj) {
+			 	         	var blockdate=obj.blockdate;
+			 	        	var timeblock=obj.timeblock;
+			 	        	if(timeblock=='00:00:00')
+			 	        	{
+			 	        		 alert("Sorry! this date is blocked by agent.");
+			 			    	  $("#dateappoint").val('');
+			 			    	  return false;
+			 	        	}
+			 	        	else
+			 	        	{
+			 	        		 alert("Sorry! this time is blocked by agent.");
+			 			    	  $("#timeappoint").val('');
+			 			    	  return false;
+			 	        	}
+		    		  });
+			 	        	//alert("Sorry! this date/time is blocked by agent.");
+		    	  //$("#timeappoint").val('');
+		    	  //return false;
+		    	 }
+		    	//  $("#dateappoint").val('');
+		    	//  $("#timeappoint").val('');  }
+		    	//  else
+		    	//  {
+		    		//  alert("Sorry for this date/time you can't make appointment!");
+		    		//  return false;
+			    	  //$("#dateappoint").val(''); 
+		    	 // }
+		    }
+		    else
+		    {
+			   // alert("123");
+		    	$("#dateappoint").val(dateappoint);
+		    	$("#timeappoint").val(timeappoint);
+		    }
+
+		                        },
+		error: function (xhr, ajaxOptions, thrownError) {
+		//alert(xhr.status);
+		//alert(thrownError);
+		alert("Sorry! network problem");    
+		window.location.assign(baseurl()+"/index.html");
+		}
+
+
+
+		});  ///select ajax close...
+
+}
+
+</script>

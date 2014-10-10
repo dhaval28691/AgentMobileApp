@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+<title>Property</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.min.js"></script>
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+<link rel="stylesheet" href="css/app_property.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+</head>
+<body>
+<div data-role="page" id="newsfeed" class="ui-responsive-panel">
+	<header class="header-stn"  data-role="header" data-position="fixed">
+		<a href="javascript:history.back()" class="hddiv ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all goback"></a>
+		<a href="#nav-panel" class="hddiv slide_menu bar" data-icon="bars"></a>
+		
+		<div class="apn_ple hddiv div">
+			<a href="profile.html" class="appoin_ple" title="myprofile"><span></span></a>
+		</div>
+		<div class="apn_apnt hddiv div">
+			<a href="chat.html" class="appoin_apnt" title="chat"><span></span></a>
+		</div>
+		<div class="apn_brf hddiv div">
+			<a href="postproperty.html" class="appoin_brf"><span></span></a>
+		</div>
+		<a href="newproperty.html" class="slide_menu plus" data-icon="plus"></a>
+		<div class="clearing"></div>
+	</header>
+	<section data-role="content" class="content-container" style="padding:5px;">
+	<script type="text/javascript">
+	$(document).on('blur', 'input, textarea', function() {
+	    setTimeout(function() {
+	        window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+	    }, 0);
+	});
+	</script>
+		<div class="feed_users">
+			<div class="feed_messages">
+				<div class="msg_feed">
+					<a href="messages.html" data-transition="slide" data-inline="true">
+						<label class="feed_user">arivu</label>
+					</a>
+				</div>
+				<div class="msg_feed">
+					<a href="#">
+						<label class="feed_user">Madhuri</label>
+					</a>
+				</div>
+				<div class="msg_feed">
+					<a href="#">
+						<label class="feed_user">prabha</label>
+					</a>	
+				</div>
+			</div>
+		</div>
+	</section>
+<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="nav-panel" class="">
+	<div class="myprf">
+		<div class="img"><img src="images/profile/1.png"/></div>
+		<div class="name">Albert</div>
+		<div class="clear"></div>	
+	</div>
+	<div data-role="collapsible" class="fav_clpse" data-iconpos="right">
+		<h4>Favourites</h4>
+		<ul data-role="listview" class="clpslst">
+			<li><a href="postproperty.html" data-ajax="false">Property Listings</a></li>
+			<li><a href="managelist.html">Manage Listing</a></li>
+			<li><a href="messages.html">Messages</a></li>
+			<li><a href="news.html">News</a></li>
+		</ul>
+	</div>
+	<!--<div data-role="collapsible" class="net_clpse" data-iconpos="right">
+		<h4>NETWORKS</h4>
+		<ul data-role="listview" class="clpslst">
+			 <li><a href="#">Connections</a></li> 
+		</ul>
+	</div>-->
+	<div data-role="collapsible" class="app_clpse" data-iconpos="right">
+		<h4>APPS</h4>
+		<div class="left3">
+			<ul data-role="listview" class="clpslst">
+				<li><a href="#popupCloseRight" class="contact" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline"><span></span>Share</a></li>
+				<li><a href="#" class="email"><span></span>Email Marketting</a></li>
+				<li><a href="#" class="sms"><span></span>Marketting</a></li>
+				<li><a href="#" class="post"><span></span>Auto Post</a></li>
+			</ul>	
+		</div>
+	</div>
+	<div data-role="popup" id="popupCloseRight" class="ui-content" style="width:250px">
+    	<a href="#" data-rel="back" class="closemail ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+    	<input type="text" placeholder="enter the email id..."/>
+    	<a class="sendmail" href="#"><span class="iconmail ui-btn-icon-notext ui-icon-mail"></span><span class="sendtxt">Send</span></a>
+		
+	</div>
+	<div data-role="collapsible" class="team_clpse" data-iconpos="right">
+		<h4>TEAMSPACES</h4>
+		<ul data-role="listview" class="clpslst">				
+			<li><a href="#">Professional Group</a></li>
+		</ul>
+	</div>
+	<div data-role="collapsible" class="profile_clpse" data-iconpos="right">
+		<h4>Profile</h4>
+		<ul data-role="listview" class="clpslst">
+			<li><a href="#">Accout settings</a></li>
+			<li><a href="#">Logout</a></li>
+		</ul>
+	</div>
+</div>
+	<!-- <footer data-role="footer" data-position="fixed"></footer> -->
+</div>
+</body>
+</html>

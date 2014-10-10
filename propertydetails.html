@@ -1,0 +1,619 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<title>Property</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/functionspropertyajax.js"></script>
+
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+<link rel="stylesheet" href="css/app_property.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+</head>
+<body>
+<script>
+  $(document).on({
+          ajaxStart: function() { 
+            $.mobile.loading('show');
+            $('#tabs').hide();
+            console.log('getJSON starts...');
+          },
+          ajaxStop: function() {
+            $.mobile.loading('hide');
+            $('#tabs').show();
+            console.log('getJSON ends...');
+          }    
+        });
+</script>
+<div data-role="page" id="propertyadetails" class="ui-responsive-panel">
+	<header class="header-stn"  data-role="header" data-position="fixed">
+		<!-- <a href="javascript:history.back()" class="hddiv ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all goback"></a> -->
+		<a href="#nav-panel" class="hddiv slide_menu bar" data-icon="bars" data-ajax="false"></a>
+		<div class="apn_brf hddiv div">
+			<a href="#" class="appoin_brf" data-ajax="false" id="propertylist"><span></span></a>
+		</div>
+		<div class="apn_apnt hddiv div">
+			<a href="#" class="appoin_apnt" title="chat" data-ajax="false" id="testmsg"><span></span></a>
+		</div>
+		<div class="apn_ple hddiv div">
+			<a href="#" class="appoin_ple" title="aboutus" data-ajax="false" id="about1"><span></span></a>
+		</div>
+		<a href="#" class="slide_menu plus" data-icon="plus" data-ajax="false"  id="testnewprop1"></a>
+		<div class="clearing"></div>
+	</header>
+	<section data-role="content" class="content-container" style="padding:5px;">
+	<script type="text/javascript">
+	$(document).on('blur', 'input, textarea', function() {
+	    setTimeout(function() {
+	        window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+	    }, 0);
+	});
+	</script>
+		<div class="prop_head">
+	<!-- 
+			<div class="prop_hd1">
+				<div class="prop_hdcnlt">
+					<span class="prop1">Reflection at keppel Bay (D04)</span><br/>
+					<span class="prop2">1 keppel Bay view 098402</span>
+				</div>
+				<div class="prop_hdcnrt">
+					<span class="prop3">condominium</span><br/>
+					<span class="prop4">For Sale</span>
+				</div>
+				<div class="clearing"></div>
+			</div>
+			<div class="prop_hdtop">
+				<div class="prop_hdcnlt">
+					<span class="sqft1">3000 sqft</span><br/>
+					<span class="bedroom bhk">3</span>
+					<span class="bathroom rest">3</span>
+				</div>
+				<div class="prop_hdcnrt">
+					<span class="amt3">$50000</span>
+					<div class="socialize">
+						<a href="https://www.facebook.com/" class="fb"><span></span>facebook</a>
+						<a href="https://in.linkedin.com/" class="lin"><span></span>linkedin</a>
+					</div>
+				</div>
+				<div class="clearing"></div>
+			</div>
+			-->
+		</div>
+		
+		<div class="prop_img">
+		<!-- 	<img src="images/img/img1.png" alt=" " />  -->
+		</div>
+		
+		
+		<!-- <div class="prodeails">  -->
+		 
+		 
+		 
+		<div data-role="tabs" id="tabs">
+		
+  <div data-role="navbar">
+    <ul>
+      <li><a href="#details" data-ajax="false">Details</a></li>
+      <li><a href="#amentities" data-ajax="false">Amenities</a></li>
+    </ul>
+  </div>
+  
+ <div id="details" class="prodeails1 ui-body-d ui-content">
+ <!-- 
+  <div id="details" class="ui-body-d ui-content">
+ 
+	    <h3>Descriptions:</h3>
+	    <div class="details_pt">
+		    <label class="left">Titile</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+	    </div>
+	    <div  class="details_pt">
+		    <label class="left">Address</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+		</div>
+	    <div class="details_pt">
+	       	<label class="left">Price</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+	    </div>
+	    <div class="details_pt">
+	    	<label class="left">District</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+	    </div>
+	    <div class="details_pt">
+	    	<label class="left">Type</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+	    </div>
+	    <div class="details_pt">
+		    <label class="left">Postal Code</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+	    </div>
+	    <div class="details_pt">
+		    <label class="left">Build In</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+	    </div>
+  	  <button>save</button>
+ 
+ </div>
+  <div class="clearing"></div>
+   -->
+ </div>
+
+ 
+
+ 
+ <div id="amentities" class="prodeails2">
+ <!-- 
+	 <div id="amentities">
+	  	<h3>Amendments:</h3>
+	    <div class="amt">
+		    <label class="left">Paid Parking</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+	    </div>
+	    <div class="amt">
+		    <label class="left">Parking Spaces</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+		</div>
+	    <div class="amt">
+	       	<label class="left">Bike Rocks</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+	    </div>
+	    <div class="amt">
+	    	<label class="left">Internet</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+	    </div>
+	    <div class="amt">
+	    	<label class="left">Gym</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+	    </div>
+	    <div class="amt">
+		    <label class="left">Swimming Pool</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+	    </div>
+	    <div class="amt">
+		    <label class="left">Central Airconditioning</label>:
+		    <input type="text" class="right"/>
+		    <div class="clear"></div>
+	  </div>
+	  
+	  <div class="clearing"></div>
+	  <button>save</button>
+	  
+  </div>
+   -->
+  </div>
+  
+</div>
+		 	 
+		<!--  </div> -->
+		
+		
+	</section>
+	<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="nav-panel" class="navpan">
+		<div class="myprf">
+			<div class="img" class="img1"></div> <!-- <img src="images/profile/1.png"/> -->
+			<div class="name"></div><div class="clear"></div>	
+		</div>
+		<ul data-role="listview" class="clpslst">
+			<li><a href="#" class="postpropertylist" data-ajax="false">Property Listings</a></li>
+			<li><a href="#" class="managelist">Manage Listing</a></li>
+			<li><a href="#" class="messages">Messages</a></li>
+			<li><a href="#" class="appointment">Make an Appointment</a></li>
+			<li><a href="#" class="news">News</a></li>
+		</ul>
+		<div class="appshare" id="appshareroot" data-role="collapsible" data-iconpos="right"><h3>APPS</h3>
+	   		<ul data-role="listview"><li id="appshare1"><a href="#popupCloseRight" data-rel="popup">share</a><span class="autop"></span></li><li id="apppost1"><a>autopost</a><span class="share"></span></li></ul>
+		</div>
+		<div class="navprof" id="profile" data-role="collapsible" data-iconpos="right"><h3>Profile</h3>
+	   		<ul data-role="listview"><li id="profile1"><a>account settings</a></li><li id="logoutpp"><a>logout</a></li><li id="exitpp"><a>Exit</a></li></ul>
+		</div>
+		<div data-role="popup" id="popupCloseRight" class="ui-content" style="width:250px">
+	    	<a href="#" data-rel="back" class="closemail ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	    	<input type="text" id="emailshare1" placeholder="enter the email id..."/>
+	    	<a class="sendmail" href="#"><span class="iconmail ui-btn-icon-notext ui-icon-mail"></span><span class="sendtxt">Send</span></a>
+		</div>
+	</div>
+<!-- <footer data-role="footer" data-position="fixed"><button onclick="window.location='propertylist.html';" class="propdet_done">Done</button></footer> -->
+</div>
+</body>
+</html>
+<script type="text/javascript"> 
+$(document).ready(function(){
+	var userid=getCookie('useridset');
+	if(userid=="" || userid==null)
+	{
+	 alert("Sorry your login expired!");
+	 window.location.assign(baseurl()+"/index.html");
+	}
+	 $('.prop_head').html('');
+     $('.prop_img').html('');
+     $('.prodeails1').html('');
+     $('.prodeails2').html('');
+	var propid=getCookie('propid');
+	//alert(propid);
+	if(propid=="")
+	{
+		alert("please click paticluar property to get details");
+		 window.location.assign(baseurl()+"/postproperty.html"); 
+	}
+	getpropertylistdetails(propid);
+	
+	
+});
+
+
+////////////function for list of property for sale particular name click................
+function getpropertylistdetails(propertyid)
+{
+	   $('.prop_head').html('');
+       $('.prop_img').html('');
+       $('.prodeails1').html('');
+       $('.prodeails2').html('');
+	//alert(123);
+	var property_id=propertyid;
+	$.ajax({
+		type: "POST",
+		url: baseurl()+"/WS/p_request.php?action=getpropertylist_details",  //local & server
+		data:"property_id="+property_id,  
+		dataType: "json",
+		async: 'true',
+		success: function(msg) {     
+		    if(msg.Result=="Success")   //message from response
+		    {
+		       var json =msg.record;
+		       var json1 =msg.record1;
+		      // $.mobile.changePage("propertydetails.html",{data1:json});   //,reqid:json_req}
+		      //   $( document ).on( "pagebeforechange" , function ( event, data ) {
+		        	
+		        	
+		        	 
+		 	  //   if ( data.toPage[0].id == "propertyadetails" ) {
+		 	    // var stuff3 = data.options.data1;
+		 	      var stuff3=json;
+		 	     var stuff4=json1;
+		 	     if(stuff4=="")
+		 	     {
+			 	     stuff4=stuff3;
+			 	    
+		 	     }
+		 	     var data=[];
+		 	       $('.prop_head').html('');
+		 	       $('.prop_img').html('');
+		 	       $('.prodeails1').html('');
+		 	       $('.prodeails2').html('');
+		 	      
+		 	       $.each(stuff3, function(idx, obj) {
+		 	         	var price=obj.price;
+		 	        	var floor_area=obj.floor_area;
+		 	        	var streetname=obj.streetname;
+		 	        	var address=obj.address;
+		 	        	var front_status=obj.front_status;
+		 	        	var description=obj.description;
+		 	        	var agent=obj.agent;
+		 	        	var media=obj.media;
+		 	        	var rooms=obj.rooms;
+		 	        	var bathrooms=obj.bathrooms;
+		 	        	var listing_type=obj.listing_type;
+		 	        	var type=obj.type;
+		 	       	    var property_id=obj.property_id;
+
+		 	       	    var postcode=obj.postcode;
+		 	       	    var district=obj.district;
+		 	        	
+		 	        	if(media)
+		 	        		{
+		 	        		//var img="http://thatco.com/realhome/images/agent/"+media;  //need to change.
+		 	        		//var img="http://thatco.com/realhome/admin/propertyimages_upload/"+media;
+	                       //var img="http://sghomey.com/admin/propertyimages_upload/"+media;  
+		 	        		var img_propertylistimage=getCookie('img_propertylistimage');
+		 	        	    //var img="http://sghomey.com/admin/propertyimages_upload/"+media; 
+		 	        	    var img=img_propertylistimage+media;   //dynamic from js
+		 	        		}
+		 	        	else
+		 	        		{
+		 	        		var img=baseurl()+"/images/background/noimages.png";
+		 	        		}
+
+		 	        	
+		 	        	 
+		 	    	       $(".prop_head").append(
+		 	    			'<div class="prop_hd1">'+
+		 					'<div class="prop_hdcnlt">'+
+		 						'<span class="prop1">'+address+'</span><br/>'+
+		 						'<span class="prop2"></span>'+
+		 					'</div>'+
+		 					'<div class="prop_hdcnrt">'+
+		 						'<span class="prop3">'+type+'</span><br/>'+
+		 						'<span class="prop4">'+listing_type+'</span>'+
+		 					'</div>'+
+		 					'<div class="clearing"></div>'+
+		 				'</div>'+
+		 				'<div class="prop_hdtop">'+
+		 					'<div class="prop_hdcnlt">'+
+		 						'<span class="sqft1">'+floor_area+'</span><br/>'+
+		 						'<span class="bedroom bhk">'+rooms+'</span>'+
+		 						'<span class="bathroom rest">'+bathrooms+'</span>'+
+		 					'</div>'+
+		 					'<div class="prop_hdcnrt">'+
+		 						'<span class="amt3">$'+price+'</span>'+
+		 						//'<div class="socialize">'+
+		 							//'<a href="#" class="fb"><span></span>facebook</a>'+ //https://www.facebook.com/
+		 							//'<a href="#" class="lin"><span></span>linkedin</a>'+ //https://in.linkedin.com/
+		 						//'</div>'+
+		 					'</div>'+
+		 					'<div class="clearing"></div>'+
+		 				'</div>'
+						/////////////
+		   			);
+		 	    	$(".prop_img").append(
+				 	    	
+		 	    			//'<img src="images/img/img1.png" alt=" " />'
+		 	    			'<img src="'+img+'" alt=" " />'
+				 	    	///////////
+		 	    			 );
+		 	     	$(".prodeails1").append(
+
+                        /*
+		 	     		'<div data-role="tabs" id="tabs">'+
+		 	     		  '<div data-role="navbar">'+
+		 	     		   '<ul>'+
+		 	     		      '<li><a href="#details" data-ajax="false">Details</a></li>'+
+		 	     		      '<li><a href="#amentities" data-ajax="false">Amentities</a></li>'+
+		 	     		    '</ul>'+
+		 	     		  '</div>'+
+		 	     		  */
+		 	     		  //'<div id="details" class="ui-body-d ui-content">'+
+		 	     			    '<h3>Descriptions:</h3>'+
+		 	     			    '<div class="details_pt">'+
+		 	     				    '<label class="left">Title</label>:'+
+		 	     				    '<span>'+address+' </span>'+
+		 	     				    '<div class="clear"></div>'+
+		 	     			    '</div>'+
+		 	     			    /*
+		 	     			    '<div  class="details_pt">'+
+		 	     				    '<label class="left">Address</label>:'+
+		 	     				    '<input type="text" class="right"/>'+
+		 	     				    '<div class="clear"></div>'+
+		 	     				'</div>'+
+		 	     				*/
+		 	     			    '<div class="details_pt">'+
+		 	     			       	'<label class="left">Price</label>:'+
+		 	     				    '<span>$'+price+'</span>'+
+		 	     				    '<div class="clear"></div>'+
+		 	     			    '</div>'+
+		 	     			    '<div class="details_pt">'+
+		 	     			    	'<label class="left">District</label>:'+
+		 	     				    '<span>'+district+'</span>'+
+		 	     				    '<div class="clear"></div>'+
+		 	     			    '</div>'+
+		 	     			    '<div class="details_pt">'+
+		 	     			    	'<label class="left">Type</label>:'+
+		 	     				    '<span>'+type+'</span>'+
+		 	     				    '<div class="clear"></div>'+
+		 	     			    '</div>'+
+		 	     			    '<div class="details_pt">'+
+		 	     				    '<label class="left">Postal Code</label>:'+
+		 	     				    '<span>'+postcode+'</span>'+
+		 	     				    '<div class="clear"></div>'+
+		 	     			    '</div>'+
+		 	     			    '<div class="details_pt">'+
+		 	     				    '<label class="left">Build In</label>:'+
+		 	     				    '<span>'+floor_area+'</span>'+ 
+		 	     				    '<div class="clear"></div>'+
+		 	     			    '</div>'+
+		 	     		//'</div>'+
+		 	     		 ' <div class="clearing"></div>'
+		 	     		 );
+	 	     		 
+		 	     	$(".prodeails2").append(
+		 	     			// '<div id="amentities">'+
+		 	     			  	'<h3>Amendments:</h3>'
+	 	     			  	);
+		 	        	
+		 	       });  //each end.
+
+		 	      $.each(stuff4, function(idx, obj) {
+		 	        	
+ 	        		  var facilities=obj.facilities;
+ 	        		 if(stuff4==stuff3)
+ 	        		//  if(facilities=="")
+ 	        		  {
+ 	        		  var facilities="No any amentities for this property";
+ 	        		  }
+ 	        		$(".prodeails2").append(
+		 	     			// '<div id="amentities">'+
+		 	     			  //	'<h3>Amendments:</h3>'+
+		 	     			   ' <div class="amt">'+
+		 	     				    '<label class="center">'+facilities+'</label>'+
+		 	     				   //'<input type="text" class="right"/>'+
+		 	     				    '<div class="clear"></div>'+
+		 	     			   ' </div>'+
+		 	     			   /*
+		 	     			    '<div class="amt">'+
+		 	     				   ' <label class="left">Parking Spaces</label>:'+
+		 	     				    '<input type="text" class="right"/>'+
+		 	     				   ' <div class="clear"></div>'+
+		 	     				'</div>'+
+		 	     			    '<div class="amt">'+
+		 	     			       '	<label class="left">Bike Rocks</label>:'+
+		 	     				    '<input type="text" class="right"/>'+
+		 	     				    '<div class="clear"></div>'+
+		 	     			    '</div>'+ 
+		 	     			    '<div class="amt">'+
+		 	     			    	'<label class="left">Internet</label>:'+
+		 	     				    '<input type="text" class="right"/>'+
+		 	     				    '<div class="clear"></div>'+
+		 	     			    '</div>'+
+		 	     			    '<div class="amt">'+
+		 	     			    	'<label class="left">Gym</label>:'+
+		 	     				    '<input type="text" class="right"/>'+
+		 	     				    '<div class="clear"></div>'+
+		 	     			    '</div>'+
+		 	     			    '<div class="amt">'+
+		 	     				    '<label class="left">Swimming Pool</label>:'+
+		 	     				    '<input type="text" class="right"/>'+
+		 	     				    '<div class="clear"></div>'+
+		 	     			    '</div>'+
+		 	     			    '<div class="amt">'+
+		 	     				    '<label class="left">Central Airconditioning</label>:'+
+		 	     				    '<input type="text" class="right"/>'+
+		 	     				    '<div class="clear"></div>'+
+		 	     			  '</div>'+
+		 	     			  */
+		 	     			  
+		 	     			 ' <div class="clearing"></div>'
+		 	     			// ' <button>save</button>'+
+		 	     			  
+		 	     		 // '</div>'
+		 	     		  
+		 	     		//'</div>'
+
+
+				 	     	
+			 	    	////////////
+	 	    		);
+		 	        	
+		 	      });
+		 	       
+		 	 //  }   //end of page cond
+		 	    
+		 	    //before search here
+		 	  ///////////////
+		 	// 	}); //pagebefore
+		 	
+		 	///fb link share,,,,,,,,,,,,,
+		 	   	 $(".fb").click(function(){
+		 	        var width = 626; //626
+		 	        var height = 436; //436
+		 	        var yourPageToShare = location.href;
+		 	        var sharerUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(yourPageToShare);
+		 	        var l = window.screenX + (window.outerWidth - width) / 2;
+		 	        var t = window.screenY + (window.outerHeight - height) / 2;
+		 	        var winProps = ['width='+width,'height='+height,'left='+l,'top='+t,'status=no','resizable=yes','toolbar=no','menubar=no','scrollbars=yes'].join(',');
+		 	        var win = window.open(sharerUrl, 'fbShareWin', winProps);
+
+
+
+
+		 	       ///to start loader...
+			 	      var your_redirect_uri=baseurl()+"/propertydetails.html";
+			 	    ref.addEventListener('loadstart', function(event) {
+
+});
+ref.addEventListener('loadstop', function(event) {
+   console.log(event.type + ' - ' + event.url);
+   var post_id = event.url.split("post_id=")[1];
+   var cancel_url = event.url.split("#")[0];
+   if(post_id != undefined){
+          setTimeout(function() {
+              ref.close();                    
+          }, 5000);
+   }
+   if(cancel_url != undefined && cancel_url == your_redirect_uri){
+          setTimeout(function() {
+              ref.close();                        
+          }, 1000);
+   }                         
+});
+ref.addEventListener('exit', function(event) {
+
+}); 
+
+//redirect to app after 5 seconds
+window.setTimeout(function() {
+    window.location.href = baseurl()+"/propertydetails.html";
+}, 5000);
+			 	    ///
+		 	    });
+
+	           
+
+			 	   
+			 	    ////////////////////
+
+			 	    //////Linked in share.............
+ 	    $(".lin").click(function(){
+ 	    var url="http://install.diawi.com/8zT3KX";  //for sg groomey : http://install.diawi.com/otXDBA
+	    var title="Mark lim app";    //need to change this...
+	    var summary="SG Homey";
+	    
+ 		    var width = 626;
+	        var height = 436;
+	        var yourPageToShare = location.href;
+	        var sharerUrl = 'http://www.linkedin.com/shareArticle?mini=true&url='+ yourPageToShare +'&title='+title+'&summary='+summary;
+	        var l = window.screenX + (window.outerWidth - width) / 2;
+	        var t = window.screenY + (window.outerHeight - height) / 2;
+	        var winProps = ['width='+width,'height='+height,'left='+l,'top='+t,'status=no','resizable=yes','toolbar=no','menubar=no','scrollbars=yes'].join(',');
+	        var win = window.open(sharerUrl, 'LinkedinShareWin', winProps);
+
+	        ///to start loader...
+	 	    var your_redirect_uri=baseurl()+"/propertydetails.html";
+	 	    ref.addEventListener('loadstart', function(event) {
+
+});
+ref.addEventListener('loadstop', function(event) {
+console.log(event.type + ' - ' + event.url);
+var post_id = event.url.split("post_id=")[1];
+var cancel_url = event.url.split("#")[0];
+if(post_id != undefined){
+setTimeout(function() {
+    ref.close();                    
+}, 5000);
+}
+if(cancel_url != undefined && cancel_url == your_redirect_uri){
+setTimeout(function() {
+    ref.close();                        
+}, 1000);
+}                         
+});
+ref.addEventListener('exit', function(event) {
+
+}); 
+
+//redirect to app after 5 seconds
+window.setTimeout(function() {
+    window.location.href = baseurl()+"/propertydetails.html";
+}, 5000);
+	 	    ///
+
+	 //   window.open('http://www.linkedin.com/shareArticle?mini=true&url='+ url +'&title='+title+'&summary='+summary);
+    });
+
+			 	    ///////////////////////// close app share links.
+		 	    				 	
+		    	    
+	      }  //success
+		    else
+		    {
+		      alert("Sorry no property list details for particular property!");
+		      window.location.assign(baseurl()+"/postproperty.html");   //failure
+		    }
+
+		                        },
+		error: function (xhr, ajaxOptions, thrownError) {
+		//alert(xhr.status);
+		//alert(thrownError);
+		alert("Sorry! network problem");    
+		 window.location.assign(baseurl()+"/index.html");                   	
+		}
+
+	});
+
+}
+
+</script>

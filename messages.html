@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<title>Property</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/functionspropertyajax.js"></script>
+
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+<link rel="stylesheet" href="css/app_property.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+</head>
+<body>
+<script>
+  $(document).on({
+          ajaxStart: function() { 
+            $.mobile.loading('show');
+            console.log('getJSON starts...');
+          },
+          ajaxStop: function() {
+            $.mobile.loading('hide');
+            console.log('getJSON ends...');
+          }    
+        });
+</script>
+<div data-role="page" id="messages" class="ui-responsive-panel">
+	<header class="header-stn"  data-role="header" data-position="fixed">
+		<!-- <a href="javascript:history.back()" class="hddiv ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all goback"></a> -->
+		<a href="#nav-panel" class="hddiv slide_menu bar" data-icon="bars" data-ajax="false"></a>
+		<div class="apn_brf hddiv div">
+			<a href="#" class="appoin_brf" data-ajax="false" id="propertylist"><span></span></a>
+		</div>
+		<div class="apn_apnt hddiv div">
+			<a href="#" class="appoin_apnt" title="chat" data-ajax="false" id="testmsg"><span></span></a>
+		</div>
+		<div class="apn_ple hddiv div">
+			<a href="#" class="appoin_ple" title="aboutus" data-ajax="false" id="about1"><span></span></a>
+		</div>
+		<a href="#" class="slide_menu plus" data-icon="plus" data-ajax="false"  id="testnewprop1"></a>
+		<div class="clearing"></div>
+	</header>
+	<section data-role="content" class="content-container" style="padding:5px;">
+	<script type="text/javascript">
+	$(document).on('blur', 'input, textarea', function() {
+	    setTimeout(function() {
+	        window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+	    }, 0);
+	});
+	</script>
+		<h3>Messages</h3>
+		<div class="feed_users">
+			   <!--
+			<a href="#" class="chatlist" id="chatlist7">
+				<div class="msg_inbx">
+					<div class="msg_inbox" >
+				 
+						<div class="img"><img src="images/profile/1.png"/></div>
+						<div class="name">Shaung mung</div>
+						<div class="receivetime">10 sec ago</div>
+						<div class="clear"></div>	
+						
+					</div>
+				</div>
+			</a>
+			 -->
+			
+	   <!--  
+			<a href="#" class="chatlist" id="chatlist71">
+				<div class="msg_inbx" >
+					<div class="msg_inbox">
+						<div class="img"><img src="images/profile/1.png"/></div>
+						<div class="name">beneto rold</div>
+						<div class="receivetime">20 minutes ago</div>
+						<div class="clear"></div>	
+					</div>
+				</div>		
+			</a>
+			<a href="#" class="chatlist" id="chatlist72">
+				<div class="msg_inbx">
+					<div class="msg_inbox">
+						<div class="img"><img src="images/profile/1.png"/></div>
+						<div class="name">Albert</div>
+						<div class="receivetime">30 minutes ago</div>
+						<div class="clear"></div>	
+					</div>
+				</div>
+			</a>	
+					
+			-->
+		</div>
+	</section>
+	<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="nav-panel" class="navpan">
+			<div class="myprf">
+			<div class="img" class="img1"></div>
+			<div class="name"></div><div class="clear"></div>	
+		</div>
+		<ul data-role="listview" class="clpslst">
+			<li><a href="#" class="postpropertylist" data-ajax="false">Property Listings</a></li>
+			<li><a href="#" class="managelist">Manage Listing</a></li>
+			<li><a href="#" class="messages">Messages</a></li>
+			<li><a href="#" class="appointment">Make an Appointment</a></li>
+			<li><a href="#" class="news">News</a></li>
+		</ul>
+		<div class="appshare" id="appshareroot" data-role="collapsible" data-iconpos="right"><h3>APPS</h3>
+	   		<ul data-role="listview"><li id="appshare1"><a href="#popupCloseRight" data-rel="popup">share</a><span class="autop"></span></li><li id="apppost1"><a>autopost</a><span class="share"></span></li></ul>
+		</div>
+		<div class="navprof" id="profile" data-role="collapsible" data-iconpos="right"><h3>Profile</h3>
+	   		<ul data-role="listview"><li id="profile1"><a>account settings</a></li><li id="logoutpp"><a>logout</a></li><li id="exitpp"><a>Exit</a></li></ul>
+		</div>
+		<div data-role="popup" id="popupCloseRight" class="ui-content" style="width:250px">
+	    	<a href="#" data-rel="back" class="closemail ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	    	<input type="text" id="emailshare1" placeholder="enter the email id..."/>
+	    	<a class="sendmail" href="#"><span class="iconmail ui-btn-icon-notext ui-icon-mail"></span><span class="sendtxt">Send</span></a>
+		</div>
+	</div>
+	<!-- <footer data-role="footer" data-position="fixed"></footer> -->
+</div>
+</body>
+<script type="text/javascript">
+$(window).load(function() {
+   var maxHeight = -1;
+
+   $('.for_sale,.sqr_ft,.house_rate').each(function() {
+     maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+   });
+
+   $('.for_sale,.sqr_ft,.house_rate').each(function() {
+     $(this).height(maxHeight);
+   });
+ });	
+</script>
+</html>
+<script type="text/javascript"> 
+$(document).ready(function(){
+	 setCookie('chatid','');
+	var userid=getCookie('useridset');
+
+	if(userid=="" || userid==null)
+		{
+		 alert("Sorry your login expired!");
+		 window.location.assign(baseurl()+"/index.html");
+		}
+
+	getallmessagelist();
+	/*
+	$("#chatlist7").click(function(){
+		 window.location.assign(baseurl()+"/chat.html");
+	});
+
+	
+	$("#chatlist71").click(function(){
+		 window.location.assign(baseurl()+"/chat.html");
+	});
+	$("#chatlist72").click(function(){
+		 window.location.assign(baseurl()+"/chat.html");
+	});
+	*/
+
+	
+});
+function getallmessagelist()
+{
+	
+	var userid=getCookie('useridset');
+	$.ajax({
+		type: "POST",
+		url: baseurl()+"/WS/p_request.php?action=getallmessages",  //local & server
+		data:"&id="+userid,
+	    dataType: "json",
+		async: 'true',
+		success: function(msg) {     
+		    if(msg.Result=="Success")   //message from response
+		    {
+		    	 var json =msg.recordn;
+			    
+			      // $.mobile.changePage("propertydetails.html",{data1:json});   //,reqid:json_req}
+			      //   $( document ).on( "pagebeforechange" , function ( event, data ) {
+			        	
+			     //   if ( data.toPage[0].id == "propertyadetails" ) {
+			 	 // var stuff3 = data.options.data1;
+			 	      var stuff3=json;
+			 	    
+			 	   
+			 	     var data=[];
+			 	       $('.feed_users').html('');
+			 	  
+			 	      
+			 	       $.each(stuff3, function(idx, obj) {
+			 	         	var from_id=obj.from_id;
+			 	        	var to_id=obj.to_id;
+			 	        	var name=obj.name;
+			 	        	var image=obj.image;
+			 	        	var message=obj.message;
+			 	        	var usertype=obj.usertype;
+			 	         	var created_date=obj.created_date;
+
+				 	         	var objDate = new Date(created_date);
+				 		        var m_names = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+					 	        var month=m_names[objDate.getMonth()];
+					 	  
+					 	        var day=objDate.getDate();
+					 	        var time=objDate.getHours();
+					 	    
+					 	        var completedate=day+" "+month;
+					 	        
+					 	       var loginas=getCookie('loginas');
+					 	     //  if(loginas=='registeruser')
+					 	     //  {
+					 	    
+			 	       	if(image)
+	 	        		{
+	 	        			//var pimg="http://thatco.com/realhome/admin/agent_images/"+image; 
+	 	        			// var  pimg1="http://sghomey.com/admin/agent_images/"+image;   //need to change.
+	 	        			var img_agentuserimage=getCookie('img_agentuserimage');
+		 	        	    //var img="http://sghomey.com/admin/propertyimages_upload/"+media; 
+		 	        	    var pimg1=img_agentuserimage+image;   //dynamic from js
+	 	        			 var  pimg2=image;
+	 	        			if(from_id=='25' || usertype=='agent')
+	 	        			{
+		 	        			var pimg=pimg1;
+	 	        			}
+	 	        	
+			 	           
+			 	            else
+			 	            {
+				 	            var pimg=pimg2;
+			 	            }
+				 	            
+			 	       }
+	 	        		else 
+	 	        		{
+	 	        			var pimg=baseurl()+"/images/profile/noimages.png";
+	 	        		}
+	 	        	if(pimg=="undefined" || pimg==null)
+	 	        	{
+	 	        		var pimg=baseurl()+"/images/profile/noimages.png";
+	 	        	}
+					 	    //   }
+					 	    //    else
+					 	    //     {
+						 	      
+						 	     //  else
+						 	     //  {
+						 	     //	  var pimg="images/profile/1.png"; 
+						 	     //  }
+					 	   //  }
+			 	           $(".feed_users").append(
+					 	           
+					 	            '<a href="#" class="chatlist" id="'+from_id+'">'+
+									'<div class="msg_inbx">'+
+									'<div class="msg_inbox" >'+
+								 
+										'<div class="img"><img src="'+pimg+'"/></div>'+
+										'<div class="name">'+name+'</div></br>'+
+									//	'<div class="message">'+message+'</div>'+      //created_date insted i use completedate
+										'<div class="receivetime">'+completedate+'</div>'+
+										'<div class="clear"></div>'+	
+										
+									'</div>'+
+								'</div>'+
+							'</a>'
+					 	           );
+
+			 	           ///chat page
+			 	          $(".chatlist").click(function(){
+			 	        	 var id=$(this).attr('id');
+			 	        	 setCookie('chatid',id);
+			 	    		 window.location.assign(baseurl()+"/chat.html");
+			 	    	});
+
+			 	           //
+			 	       });
+		     
+		    }
+		    else
+		    {
+		    	 alert("No messages in list!");
+		        //  $.mobile.changePage("messages.html");   //failure
+		         window.location.assign(baseurl()+"/postproperty.html");
+		    }
+
+		                        },
+		error: function (xhr, ajaxOptions, thrownError) {
+		//alert(xhr.status);
+		//alert(thrownError);
+		alert("Sorry! network problem");    
+		window.location.assign(baseurl()+"/index.html");
+		}
+
+
+
+		});
+
+}
+</script>

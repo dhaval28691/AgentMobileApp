@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<title>Property</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/functionspropertyajax.js"></script>
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+<link rel="stylesheet" href="css/app_property.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+</head>
+<body>
+<script>
+  $(document).on({
+          ajaxStart: function() { 
+            $.mobile.loading('show');
+            console.log('getJSON starts...');
+          },
+          ajaxStop: function() {
+            $.mobile.loading('hide');
+            console.log('getJSON ends...');
+          }    
+        });
+</script>
+<div data-role="page" id="profile" class="ui-responsive-panel">
+	<header class="header-stn"  data-role="header" data-position="fixed">
+		<!-- <a href="javascript:history.back()" class="hddiv ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all goback"></a> -->
+		<a href="#nav-panel" class="hddiv slide_menu bar" data-icon="bars" data-ajax="false"></a>
+		<div class="apn_brf hddiv div">
+			<a href="#" class="appoin_brf" data-ajax="false" id="propertylist"><span></span></a>
+		</div>
+		<div class="apn_apnt hddiv div">
+			<a href="#" class="appoin_apnt" title="chat" data-ajax="false" id="testmsg"><span></span></a>
+		</div>
+		<div class="apn_ple hddiv div">
+			<a href="#" class="appoin_ple" title="aboutus" data-ajax="false" id="about1"><span></span></a>
+		</div>
+		<a href="#" class="slide_menu plus" data-icon="plus" data-ajax="false"  id="testnewprop1"></a>
+		<div class="clearing"></div>
+	</header>
+	<section data-role="content" class="content-container" style="padding:5px;">
+	<script type="text/javascript">
+	$(document).on('blur', 'input, textarea', function() {
+	    setTimeout(function() {
+	        window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+	    }, 0);
+	});
+	</script>
+		<p>conditions goes here.......</p>
+		
+			<a href="#popupCloseRight2" data-rel="popup" class="btn_tc ui-btn ui-corner-all ui-shadow ui-btn-inline">click here</a>
+			<div data-role="popup" id="popupCloseRight2" class="ui-content" style="max-width:280px;width:250px;">
+				<p style="text-align:center;">Are You agree?</p>
+				<button class="agree">Agree</button>
+				<button class="disagree">Disagree</button>
+				<div class="clear"></div>
+			    <a href="#" data-rel="back" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right close_term ui-corner-all">Close</a>
+			</div>
+		
+		
+	</section>
+	<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="nav-panel" class="navpan">
+		<div class="myprf">
+			<div class="img" class="img1"></div>
+			<div class="name"></div><div class="clear"></div>	
+		</div>
+		<ul data-role="listview" class="clpslst">
+			<li><a href="#" class="postpropertylist" data-ajax="false">Property Listings</a></li>
+			<li><a href="#" class="managelist">Manage Listing</a></li>
+			<li><a href="#" class="messages">Messages</a></li>
+			<li><a href="#" class="appointment">Make an Appoinment</a></li>
+			<li><a href="#" class="news">News</a></li>
+		</ul>
+		<div class="appshare" id="appshareroot" data-role="collapsible" data-iconpos="right"><h3>APPS</h3>
+	   		<ul data-role="listview"><li id="appshare1"><a href="#popupCloseRight" data-rel="popup">share</a><span class="autop"></span></li><li id="apppost1"><a>autopost</a><span class="share"></span></li></ul>
+		</div>
+		<div class="navprof" id="profile" data-role="collapsible" data-iconpos="right"><h3>Profile</h3>
+	   		<ul data-role="listview"><li id="profile1"><a>account settings</a></li><li id="logoutpp"><a>logout</a></li><li id="exitpp"><a>Exit</a></li></ul>
+		</div>
+		<div data-role="popup" id="popupCloseRight" class="ui-content" style="width:250px">
+	    	<a href="#" data-rel="back" class="closemail ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	    	<input type="text" id="emailshare1" placeholder="enter the email id..."/>
+	    	<a class="sendmail" href="#"><span class="iconmail ui-btn-icon-notext ui-icon-mail"></span><span class="sendtxt">Send</span></a>
+		</div>
+	</div>
+	<!-- <footer data-role="footer" data-position="fixed"></footer> -->
+</div>
+</body>
+</html>

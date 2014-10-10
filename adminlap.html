@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<title>Property</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript">
+$(window).load(function() {
+   var maxHeight = -1;
+
+   $('.for_sale,.sqr_ft,.house_rate').each(function() {
+     maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+   });
+
+   $('.for_sale,.sqr_ft,.house_rate').each(function() {
+     $(this).height(maxHeight);
+   });
+ });	
+</script>
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+<link rel="stylesheet" href="css/app_property.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+</head>
+<body>
+<div class="ui-responsive-panel" data-role="page" id="propertyadd">
+	<header class="header-stn"  data-role="header" data-position="fixed">
+		<a href="javascript:history.back()" class="hddiv ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all goback"></a>
+		<a href="#nav-panel" class="hddiv slide_menu bar" data-icon="bars" data-ajax="false"></a>
+		
+		<div class="apn_ple hddiv div">
+			<a href="profile.html" class="appoin_ple" title="myprofile" data-ajax="false"><span></span></a>
+		</div>
+		<div class="apn_apnt hddiv div">
+			<a href="chat.html" class="appoin_apnt" title="chat" data-ajax="false"><span></span></a>
+		</div>
+		<div class="apn_brf hddiv div">
+			<a href="postproperty.html" class="appoin_brf" data-ajax="false"><span></span></a>
+		</div>
+		<a href="newproperty.html" class="slide_menu plus" data-icon="plus" data-ajax="false"></a>
+		<div class="clearing"></div>
+	</header>
+	<section data-role="content" class="content-container" style="padding:5px;">
+	<script type="text/javascript">
+	$(document).on('blur', 'input, textarea', function() {
+	    setTimeout(function() {
+	        window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+	    }, 0);
+	});
+	</script>
+		 <div data-role="tabs">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#post-property">Post Property</a></li>
+					<li><a href="#status">Status</a></li>
+				</ul>
+			</div>
+			<div id="post-property">
+				<ul class="post-property">
+					<li>
+						<div class="background" style="background: url('images/background/1.png')">
+							<div class="details">
+								<div class="profile">
+									<div class="prof_details">
+										<div class="profile_picture">										
+											<img src="images/profile/1.png" />
+										</div>
+										<h1 class="title">Reflections at Keppel Bay (D04)</h1>
+										<span class="sub_title">1 Kepple Bay View 098402</span>
+									</div>
+									<div class="share"></div>
+									<div class="clearing"></div>
+								</div>
+							</div>
+							<div class="details_bottom">
+								<div class="for_sale">
+									<h1>Condominium</h1>
+									<span>For Sale</span>
+									<div class="clearing"></div>
+								</div>	
+								<div class="sqr_ft">
+									<div class="sqr_ft_value">
+										<span>3,00 sqft</span>
+									</div>
+									<div class="bed_rest_room">
+										<span class="bhk"></span><span class="bhk_value">3</span>
+										<span class="rest"></span><span class="rest_value">3</span>																				
+									</div>									
+								</div>		
+								<div class="house_rate">
+									<span>S$ 5,000,000</span>
+								</div>					
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="background" style="background: url('images/background/1.png')">
+							<div class="details">
+								<div class="profile">
+									<div class="prof_details">
+										<div class="profile_picture">										
+											<img src="images/profile/1.png" />
+										</div>
+										<h1 class="title">Reflections at Keppel Bay (D04)</h1>
+										<span class="sub_title">1 Kepple Bay View 098402</span>
+									</div>
+									<div class="share"></div>
+									<div class="clearing"></div>
+								</div>
+							</div>
+							<div class="details_bottom">
+								<div class="for_sale">
+									<h1>Condominium</h1>
+									<span>For Sale</span>
+									<div class="clearing"></div>
+								</div>	
+								<div class="sqr_ft">
+									<div class="sqr_ft_value">
+										<span>3,00 sqft</span>
+									</div>
+									<div class="bed_rest_room">
+										<span class="bhk"></span><span class="bhk_value">3</span>
+										<span class="rest"></span><span class="rest_value">3</span>																				
+									</div>									
+								</div>		
+								<div class="house_rate">
+									<span>S$ 5,000,000</span>
+								</div>					
+							</div>
+						</div>
+					</li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+			<div id="status">
+				<p>This is the content of the tab 'Two', with the id fragment-2.</p>
+			</div>
+		</div>
+		
+		
+				
+	</section>
+	<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="nav-panel" class="">
+	<div class="myprf">
+		<div class="img"><img src="images/profile/1.png"/></div>
+		<div class="name">Albert</div>
+		<div class="clear"></div>	
+	</div>
+	<div data-role="collapsible" class="fav_clpse" data-iconpos="right">
+		<h4>Favourites</h4>
+		<ul data-role="listview" class="clpslst">
+			<li><a href="postproperty.html" data-ajax="false">Property Listings</a></li>
+			<li><a href="managelist.html">Manage Listing</a></li>
+			<li><a href="messages.html">Messages</a></li>
+			<li><a href="news.html">News</a></li>
+		</ul>
+	</div>
+	<!--<div data-role="collapsible" class="net_clpse" data-iconpos="right">
+		<h4>NETWORKS</h4>
+		<ul data-role="listview" class="clpslst">
+			 <li><a href="#">Connections</a></li> 
+		</ul>
+	</div>-->
+	<div data-role="collapsible" class="app_clpse" data-iconpos="right">
+		<h4>APPS</h4>
+		<div class="left3">
+			<ul data-role="listview" class="clpslst">
+				<li><a href="#popupCloseRight" class="contact" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline"><span></span>Share</a></li>
+				<li><a href="#" class="email"><span></span>Email Marketting</a></li>
+				<li><a href="#" class="sms"><span></span>Marketting</a></li>
+				<li><a href="#" class="post"><span></span>Auto Post</a></li>
+			</ul>	
+		</div>
+	</div>
+	<div data-role="popup" id="popupCloseRight" class="ui-content" style="width:250px">
+    	<a href="#" data-rel="back" class="closemail ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+    	<input type="text" placeholder="enter the email id..."/>
+    	<a class="sendmail" href="#"><span class="iconmail ui-btn-icon-notext ui-icon-mail"></span><span class="sendtxt">Send</span></a>
+		
+	</div>
+	<div data-role="collapsible" class="team_clpse" data-iconpos="right">
+		<h4>TEAMSPACES</h4>
+		<ul data-role="listview" class="clpslst">				
+			<li><a href="#">Professional Group</a></li>
+		</ul>
+	</div>
+	<div data-role="collapsible" class="profile_clpse" data-iconpos="right">
+		<h4>Profile</h4>
+		<ul data-role="listview" class="clpslst">
+			<li><a href="#">Accout settings</a></li>
+			<li><a href="#">Logout</a></li>
+		</ul>
+	</div>
+</div>
+	<!-- <footer data-role="footer" data-position="fixed"></footer> -->
+</div>
+
+</body>
+</html>

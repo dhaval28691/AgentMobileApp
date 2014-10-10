@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<title>Property</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/functionspropertyajax.js"></script>
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+<link rel="stylesheet" href="css/app_property.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+</head>
+<body>
+<script>
+  $(document).on({
+          ajaxStart: function() { 
+            $.mobile.loading('show');
+            console.log('getJSON starts...');
+          },
+          ajaxStop: function() {
+            $.mobile.loading('hide');
+            console.log('getJSON ends...');
+          }    
+        });
+</script>
+<div data-role="page" id="register" class="fcbk">
+	<header class="header-stn"  data-role="header" data-position="fixed">
+		<a href="javascript:history.back()" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all goback"></a>
+		<div class="page_name">Login</div>
+		<div class="clearing"></div>
+  	</header>
+	<section data-role="content" class="content-container">
+		<div class="login_form register_form" name="">
+			<div class="username">
+				<label>User Name*</label>
+				<input type="text" id="firstname" name="name" class="namefb" placeholder="Username">
+				<div class="clear"></div>
+			</div>
+			<div class="username">
+				<label>Surname</label>
+				<input type="text" id="lastname" name="lastname"  placeholder="surname" class="lastnamefb">
+				<div class="clear"></div>
+			</div>
+			<div class="username">
+				<label>Email ID*</label>
+				<input type="email" id="email" name="email" placeholder="Email" class="emailfb" >
+				<div class="clear"></div>
+			</div>
+			<div class="password">
+				<label>Password*</label>
+				<input type="password"  name="password" id="password"  placeholder="password" class="pwdfb">
+				<div class="clear"></div>
+			</div>
+		  <form id="uploadForm" action="" method="post">
+			<div class="uploadphoto">
+				<label>Upload photo</label>
+				<input name="userImage" id="userImage" type="file" class="inputFile" />
+			</div>
+			<div class="clear"></div>
+			<div class="login_register" data-position="fixed">
+			<div class="register">
+            	<!-- <button class="join" id="join" name="join" class="join" data-ajax="false">join</button>  -->		
+            	<input type="submit" name="join" id="join" value="Register" data-ajax="false" class="join"/>
+            </div>
+            </div>
+            </form>
+			</div>
+	</section>
+
+</div>
+
+
+
+</body>
+</html>

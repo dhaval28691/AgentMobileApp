@@ -1,0 +1,776 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<title>Property</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/functionspropertyajax.js"></script>
+
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+<link rel="stylesheet" href="css/app_property.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+<script type="text/javascript">
+$(window).load(function() {
+   var maxHeight = -1;
+
+   $('.for_sale,.sqr_ft,.house_rate').each(function() {
+     maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+   });
+
+   $('.for_sale,.sqr_ft,.house_rate').each(function() {
+     $(this).height(maxHeight);
+   });
+ });	
+</script>
+</head>
+<body>
+<script>
+  $(document).on({
+          ajaxStart: function() { 
+            $.mobile.loading('show');
+            console.log('getJSON starts...');
+          },
+          ajaxStop: function() {
+            $.mobile.loading('hide');
+            console.log('getJSON ends...');
+          }    
+        });
+</script>
+<div data-role="page" id="propertyadd" class="ui-responsive-panel">
+	<header class="header-stn"  data-role="header" data-position="fixed">
+		<!-- <a href="javascript:history.back()" class="hddiv ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all goback"></a> -->
+		<a href="#nav-panel" class="hddiv slide_menu bar" data-icon="bars" data-ajax="false"></a>
+		<div class="apn_brf hddiv div">
+			<a href="#" class="appoin_brf" data-ajax="false" id="propertylist"><span></span></a>
+		</div>
+		<div class="apn_apnt hddiv div">
+			<a href="#" class="appoin_apnt" title="chat" data-ajax="false" id="testmsg"><span></span></a>
+		</div>
+		<div class="apn_ple hddiv div">
+			<a href="#" class="appoin_ple" title="aboutus" data-ajax="false" id="about1"><span></span></a>
+		</div>
+		<a href="#" class="slide_menu plus" data-icon="plus" data-ajax="false"  id="testnewprop1"></a>
+		<div class="clearing"></div>
+	</header>
+	<section data-role="content" class="content-container" style="padding:3px;">
+	<script type="text/javascript">
+	$(document).on('blur', 'input, textarea', function() {
+	    setTimeout(function() {
+	        window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+	    }, 0);
+	});
+	</script>
+	
+		 <div data-role="tabs" class="pstcnt">
+			<div data-role="navbar" class="tabbar">
+				<ul>
+					<li><a href="#post-property">Post Property</a></li>
+					<li><a href="#status">Status</a></li>
+				</ul>
+			</div>
+			<div id="post-property" class="post-property1">
+			<!--  
+				<ul class="post-property">
+					<li>
+						<div class="background" style="background: url('images/background/1.png')">
+							<div class="details">
+								<div class="profile">
+									<div class="prof_details">
+										<div class="profile_picture">										
+											<a href="profile.html"><img src="images/profile/1.png" /></a>
+										</div>
+										<h1 class="title">Reflections at Keppel Bay (D04)</h1>
+										<span class="sub_title">1 Kepple Bay View 098402</span>
+									</div>
+									<div class="share"></div>
+									<div class="clearing"></div>
+								</div>
+							</div>
+							<div class="details_bottom">
+								<div class="for_sale">
+									<h1>Condominium</h1>
+									<span>For Sale</span>
+									<div class="clearing"></div>
+								</div>	
+								<div class="sqr_ft">
+									<div class="sqr_ft_value">
+										<span>3,00 sqft</span>
+									</div>
+									<div class="bed_rest_room">
+										<span class="bhk"></span><span class="bhk_value">3</span>
+										<span class="rest"></span><span class="rest_value">3</span>																				
+									</div>									
+								</div>		
+								<div class="house_rate">
+									<span>S$ 5,000,000</span>
+								</div>					
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="background" style="background: url('images/background/2.jpg')">
+							<div class="details">
+								<div class="profile">
+									<div class="prof_details">
+										<div class="profile_picture">										
+											<a href="profile.html"><img src="images/profile/1.png" /></a>
+										</div>
+										<h1 class="title">Reflections at Keppel Bay (D04)</h1>
+										<span class="sub_title">1 Kepple Bay View 098402</span>
+									</div>
+									<div class="share"></div>
+									<div class="clearing"></div>
+								</div>
+							</div>
+							<div class="details_bottom">
+								<div class="for_sale">
+									<h1>Condominium</h1>
+									<span>For Sale</span>
+									<div class="clearing"></div>
+								</div>	
+								<div class="sqr_ft">
+									<div class="sqr_ft_value">
+										<span>3,00 sqft</span>
+									</div>
+									<div class="bed_rest_room">
+										<span class="bhk"></span><span class="bhk_value">3</span>
+										<span class="rest"></span><span class="rest_value">3</span>																				
+									</div>									
+								</div>		
+								<div class="house_rate">
+									<span>S$ 5,000,000</span>
+								</div>					
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="background" style="background: url('images/background/3.png')">
+							<div class="details">
+								<div class="profile">
+									<div class="prof_details">
+										<div class="profile_picture">										
+											<a href="profile.html"><img src="images/profile/1.png" /></a>
+										</div>
+										<h1 class="title">Reflections at Keppel Bay (D04)</h1>
+										<span class="sub_title">1 Kepple Bay View 098402</span>
+									</div>
+									<div class="share"></div>
+									<div class="clearing"></div>
+								</div>
+							</div>
+							<div class="details_bottom">
+								<div class="for_sale">
+									<h1>Condominium</h1>
+									<span>For Sale</span>
+									<div class="clearing"></div>
+								</div>	
+								<div class="sqr_ft">
+									<div class="sqr_ft_value">
+										<span>3,00 sqft</span>
+									</div>
+									<div class="bed_rest_room">
+										<span class="bhk"></span><span class="bhk_value">3</span>
+										<span class="rest"></span><span class="rest_value">3</span>																				
+									</div>									
+								</div>		
+								<div class="house_rate">
+									<span>S$ 5,000,000</span>
+								</div>					
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="background" style="background: url('images/background/4.jpg')">
+							<div class="details">
+								<div class="profile">
+									<div class="prof_details">
+										<div class="profile_picture">										
+											<a href="profile.html"><img src="images/profile/1.png" /></a>
+										</div>
+										<h1 class="title">Reflections at Keppel Bay (D04)</h1>
+										<span class="sub_title">1 Kepple Bay View 098402</span>
+									</div>
+									<div class="share"></div>
+									<div class="clearing"></div>
+								</div>
+							</div>
+							<div class="details_bottom">
+								<div class="for_sale">
+									<h1>Condominium</h1>
+									<span>For Sale</span>
+									<div class="clearing"></div>
+								</div>	
+								<div class="sqr_ft">
+									<div class="sqr_ft_value">
+										<span>3,00 sqft</span>
+									</div>
+									<div class="bed_rest_room">
+										<span class="bhk"></span><span class="bhk_value">3</span>
+										<span class="rest"></span><span class="rest_value">3</span>																				
+									</div>									
+								</div>		
+								<div class="house_rate">
+									<span>S$ 5,000,000</span>
+								</div>					
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="background" style="background: url('images/background/1.png')">
+							<div class="details">
+								<div class="profile">
+									<div class="prof_details">
+										<div class="profile_picture">										
+											<a href="profile.html"><img src="images/profile/1.png" /></a>
+										</div>
+										<h1 class="title">Reflections at Keppel Bay (D04)</h1>
+										<span class="sub_title">1 Kepple Bay View 098402</span>
+									</div>
+									<div class="share"></div>
+									<div class="clearing"></div>
+								</div>
+							</div>
+							<div class="details_bottom">
+								<div class="for_sale">
+									<h1>Condominium</h1>
+									<span>For Sale</span>
+									<div class="clearing"></div>
+								</div>	
+								<div class="sqr_ft">
+									<div class="sqr_ft_value">
+										<span>3,00 sqft</span>
+									</div>
+									<div class="bed_rest_room">
+										<span class="bhk"></span><span class="bhk_value">3</span>
+										<span class="rest"></span><span class="rest_value">3</span>																				
+									</div>									
+								</div>		
+								<div class="house_rate">
+									<span>S$ 5,000,000</span>
+								</div>					
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="background" style="background: url('images/background/2.jpg')">
+							<div class="details">
+								<div class="profile">
+									<div class="prof_details">
+										<div class="profile_picture">										
+											<a href="profile.html"><img src="images/profile/1.png" /></a>
+										</div>
+										<h1 class="title">Reflections at Keppel Bay (D04)</h1>
+										<span class="sub_title">1 Kepple Bay View 098402</span>
+									</div>
+									<div class="share"></div>
+									<div class="clearing"></div>
+								</div>
+							</div>
+							<div class="details_bottom">
+								<div class="for_sale">
+									<h1>Condominium</h1>
+									<span>For Sale</span>
+									<div class="clearing"></div>
+								</div>	
+								<div class="sqr_ft">
+									<div class="sqr_ft_value">
+										<span>3,00 sqft</span>
+									</div>
+									<div class="bed_rest_room">
+										<span class="bhk"></span><span class="bhk_value">3</span>
+										<span class="rest"></span><span class="rest_value">3</span>																				
+									</div>									
+								</div>		
+								<div class="house_rate">
+									<span>S$ 5,000,000</span>
+								</div>					
+							</div>
+						</div>
+					</li>
+				</ul>
+				-->
+			</div>
+			<div id="status">
+				    <ul data-role="listview">
+				    	<li class="ui-btn ui-btn-icon-right ui-icon-carat-r"><a href="sale.html" data-ajax="false">Sale Properties</a></li>
+				    	<li class="ui-btn ui-btn-icon-right ui-icon-carat-r"><a href="rent.html" data-ajax="false">Rent Properties</a></li>
+				    	<li class="ui-btn ui-btn-icon-right ui-icon-carat-r"><a href="sold.html" data-ajax="false">Sold Properties</a></li>
+				    </ul>	
+				</div>
+			</div>
+		
+				
+	</section>
+	<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="nav-panel" class="navpan">
+		<div class="myprf">
+			<div class="img" id="img1"></div>
+			<div class="name"></div><div class="clear"></div>	
+		</div>
+		<ul data-role="listview" class="clpslst">
+			<li><a href="#" class="postpropertylist" data-ajax="false">Property Listings</a></li>
+			<li><a href="#" class="managelist">Manage Listing</a></li>
+			<li><a href="#" class="messages">Messages</a></li>
+			<li><a href="#" class="appointment">Make an Appoinment</a></li>
+			<li><a href="#" class="news">News</a></li>
+		</ul>
+		<div class="appshare" id="appshareroot" data-role="collapsible" data-iconpos="right"><h3>APPS</h3>
+	   		<ul data-role="listview"><li id="appshare1"><a href="#popupCloseRight" data-rel="popup">share</a><span class="autop"></span></li><li id="apppost1"><a>autopost</a><span class="share"></span></li></ul>
+		</div>
+		<div class="navprof" id="profile" data-role="collapsible" data-iconpos="right"><h3>Profile</h3>
+	   		<ul data-role="listview"><li id="profile1"><a>account settings</a></li><li id="logoutpp"><a>logout</a></li><li id="exitpp"><a>Exit</a></li></ul>
+		</div>
+		<div data-role="popup" id="popupCloseRight" class="ui-content" style="width:250px">
+	    	<a href="#" data-rel="back" class="closemail ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	    	<input type="text" id="emailshare1"  placeholder="enter the email id..."/>
+	    	<a class="sendmail" href="#"><span class="iconmail ui-btn-icon-notext ui-icon-mail"></span><span class="sendtxt">Send</span></a>
+		</div>
+	</div>
+	<!-- <footer data-role="footer" data-position="fixed"></footer> -->
+</div>
+</body>
+</html>
+
+<script type="text/javascript"> 
+$(document).ready(function(){
+	var userid=getCookie('useridset');
+
+	if(userid=="" || userid==null)
+		{
+		 alert("Sorry your login expired!");
+		 window.location.assign(baseurl()+"/index.html");
+		}
+	postproperty();
+	////for post propert list of the things after login....
+//$(document).on('pageinit', '#login', function(){  
+//$("#login_linkedin").click(function(){
+
+function postproperty()
+{
+	 $('.post-property1').html('');
+	$.ajax({
+		type: "POST",
+		url: baseurl()+"/WS/p_request.php?action=getpostproperty",  //local & server
+		//data:"id="+userid,  
+		dataType: "json",
+		async: 'true',
+		success: function(msg) {     
+		    if(msg.Result=="Success")   //message from response
+		    {
+		       var json =msg.record;
+		       var agentvarid =msg.record7;
+		       
+		    //   $.mobile.changePage("postproperty.html",{data1:json});   //,reqid:json_req}
+		    //     $( document ).on( "pagebeforechange" , function ( event, data ) {
+		        	
+		        	
+		        	 
+		 	     //if ( data.toPage[0].id == "propertyadd" ) {
+		 	     //var stuff3 = data.options.data1;
+		 	     var stuff3=json;
+		 	     var data=[];
+		 	       $('.post-property1').html('');
+		 	      setCookie('propid','');
+		 	      
+		 	       $.each(stuff3, function(idx, obj) {
+		 	         	var price=obj.price;
+		 	        	var floor_area=obj.floor_area;
+		 	        	var streetname=obj.streetname;
+		 	        	var address=obj.address;
+		 	        	var front_status=obj.front_status;
+		 	        	var description=obj.description;
+		 	        	var agent=obj.agent;
+		 	        	var media=obj.media;
+		 	        	var rooms=obj.rooms;
+		 	        	var bathrooms=obj.bathrooms;
+		 	        	var listing_type=obj.listing_type;
+		 	        	var type=obj.type;
+		 	       	    var property_id=obj.property_id;
+		 	        	
+		 	        	if(media)
+		 	        		{
+		 	        		//var img="http://thatco.com/realhome/images/agent/"+media;  //need to change.
+		 	        		//var img="http://thatco.com/realhome/admin/propertyimages_upload/"+media; 
+		 	        	    var img_propertylistimage=getCookie('img_propertylistimage');
+		 	        	    //var img="http://sghomey.com/admin/propertyimages_upload/"+media; 
+		 	        	    var img=img_propertylistimage+media;   //dynamic from js
+		 	        		}
+		 	        	else
+		 	        		{
+		 	        		var img="images/background/1.png";
+		 	        		}
+		 	        	  $.each(agentvarid, function(idx, obj) {
+		 	        		 var image=obj.image;
+		 	        		 var name=obj.name;
+		 	        		 setCookie('agentnamefromp',name);
+		 	        		  $('div.name').html(name);
+		 	        		 
+	 	        		if(image)
+	 	        		{
+	 	        			//var pimg="http://thatco.com/realhome/admin/agent_images/"+image; 
+	 	        			//var pimg="http://sghomey.com/admin/agent_images/"+image;   //need to change.
+
+	 	        			var img_agentuserimage=getCookie('img_agentuserimage');
+		 	        	    //var img="http://sghomey.com/admin/propertyimages_upload/"+media; 
+		 	        	    var pimg=img_agentuserimage+image;   //dynamic from js
+	 	        		}
+	 	        		else
+	 	        		{
+	 	        			var pimg="images/profile/1.png";
+	 	        		}
+	 	        		// $('#img1').attr('img',image);
+	 	        		//document.getElementByID("img1").src = image;
+	 	        		//var imageget = document.getElementById('img1');
+	 	        		//imageget.src = image;
+	 	        		//$("#img1").src(image);
+	 	        		var imageget='<img src="'+pimg+'" />';
+	 	        		 setCookie('agentimagefromp',imageget);
+	 	        		 $('div.img').html(imageget);
+		 	    	     $(".post-property1").append(
+
+		 	    			//'<div class="ppropertylist">'+
+		 	    		
+
+				 	    	
+				 	    	'<ul class="post-property">'+
+							'<li>'+
+							'<a href="#" id="'+property_id+'" class="ppropertylist">'+
+				            '<div class="background" style="background: url('+img+')">'+
+								'<div class="details">'+
+									'<div class="profile">'+
+										'<div class="prof_details">'+
+											'<div class="profile_picture" id="profilepic">'+										
+													'<img src="'+pimg+'" />'+
+											'</div>'+
+											//'<h1 class="title">'+streetname+'</h1>'+
+											'<h1 class="title">'+address+'</h1>'+ /// address is the property name or title/address.
+											'<span class="sub_title"></span>'+
+										'</div>'+
+										'<div class="share"></div>'+
+										'<div class="clearing"></div>'+
+									'</div>'+
+									'<div class="ediprop" id="editprop" style="display: none;"><a href="#" class="edcnt">Edit</a></div>'+
+									'<div class="delprop" id="delprop" style="display: none;"><a href="#" class="decnt">Delete</a></div>'+
+									'<div class="clearing"></div>'+
+								'</div>'+
+								'<div class="details_bottom">'+
+									'<div class="for_sale">'+
+										//'<h1>'+address+'</h1>'+
+										'<h1>'+type+'</h1>'+  //property type name.
+										//'<span>'+front_status+'</span>'+
+										'<span>'+listing_type+'</span>'+  //not front_status we need for sale/rent....
+										'<div class="clearing"></div>'+
+									'</div>'+
+									'<div class="sqr_ft">'+
+										'<div class="sqr_ft_value">'+
+											'<span>'+floor_area+'</span>'+
+										'</div>'+
+										'<div class="bed_rest_room">'+
+											'<span class="bhk"></span><span class="bhk_value">'+rooms+'</span>'+
+											'<span class="rest"></span><span class="rest_value">'+bathrooms+'</span>'+																				
+										'</div>'+									
+									'</div>'+		
+									'<div class="house_rate">'+
+										'<span>'+'$'+price+'</span>'+
+									'</div>'+				
+								'</div>'+
+							'</div>'+
+							'</a>'+
+						'</li>'+
+						'</ul>'
+
+
+						
+						//'</div>'
+						/////////////
+		   			);
+		 	        	
+		 	        	
+		 	        });///for internal
+		 	      });  //each end.
+		 	       
+		 	 //  }   //end of page cond
+		 	    
+		 	    //before search here
+		 	  ///////////////
+		 	 //	}); //pagebefore
+		 	     
+		 	      //view details of list based on property click...
+		 	 //	   $(".ppropertylist a").click(function() {
+		 	    $(".ppropertylist").click(function() {
+		 	 		 // alert("789");
+		 	 		  //alert($(this).attr('id'));
+		 	 		   var getpropertyid=$(this).attr('id');
+		 	 		 //  alert(getpropertyid);  
+		 	 		  setCookie('propid',getpropertyid);  //to set in property details page.........but not using.
+		 	 		  window.location.assign(baseurl()+"/propertydetails.html");
+		 	 		 // getpropertylistdetails(getpropertyid);
+		 	 		  });
+		 					 
+	      }  //success
+		    else
+		    {
+		      alert("Sorry no property list to view!");
+		      window.location.assign(baseurl()+"/index.html");   //failure
+		    }
+
+		                        }, 
+		error: function (xhr, ajaxOptions, thrownError) {
+		//alert(xhr.status);
+		//alert(thrownError);
+		alert("Sorry! network problem"); 
+		window.location.assign(baseurl()+"/index.html");                      	
+		}
+
+
+
+		});
+//});
+}
+
+//////////manage edit/delete when click on manage lisiting//////////////////////////
+/*
+$(".managelist").click(function(){
+	 $('#editprop').css('display', 'block');
+	$('#delprop').css('display', 'block');
+
+});
+$(".postpropertylist").click(function(){
+	 $('#editprop').css('display', 'none');
+	 $('#delprop').css('display', 'none');
+});
+$("#propertylist").click(function(){
+	   
+	 $('#editprop').css('display', 'none');
+	 $('#delprop').css('display', 'none');
+});
+*/
+///////////////
+
+///////////////////////////
+});
+
+
+/* not working ver sion if want change dynamic images.............
+////////////function for list of property for sale particular name click,not using here in details................
+function getpropertylistdetails(propertyid)
+{
+//alert(123);
+var property_id=propertyid;
+$.ajax({
+type: "POST",
+url: baseurl()+"/WS/p_request.php?action=getpropertylist_details",  //local & server
+data:"property_id="+property_id,  
+dataType: "json",
+async: 'true',
+success: function(msg) {     
+if(msg.Result=="Success")   //message from response
+{
+   var json =msg.record;
+   $.mobile.changePage("propertydetails.html",{data1:json});   //,reqid:json_req}
+     $( document ).on( "pagebeforechange" , function ( event, data ) {
+    	
+    	
+    	 
+	     if ( data.toPage[0].id == "propertyadetails" ) {
+	     var stuff3 = data.options.data1;
+	     // var stuff3=json;
+	     var data=[];
+	       $('.prop_head').html('');
+	       $('.prop_img').html('');
+	       $('.prodeails').html('');
+	     
+	      
+	       $.each(stuff3, function(idx, obj) {
+	         	var price=obj.price;
+	        	var floor_area=obj.floor_area;
+	        	var streetname=obj.streetname;
+	        	var address=obj.address;
+	        	var front_status=obj.front_status;
+	        	var description=obj.description;
+	        	var agent=obj.agent;
+	        	var media=obj.media;
+	        	var rooms=obj.rooms;
+	        	var bathrooms=obj.bathrooms;
+	        	var listing_type=obj.listing_type;
+	        	var type=obj.type;
+	       	    var property_id=obj.property_id;
+	        	
+	        	if(media)
+	        		{
+	        		var img="http://thatco.com/realhome/images/agent/"+media;  //need to change.
+	        		}
+	        	else
+	        		{
+	        		var img="images/background/1.png";
+	        		}
+	 	      
+	    	$(".prop_head").append(
+	    			'<div class="prop_hd1">'+
+					'<div class="prop_hdcnlt">'+
+						'<span class="prop1">'+address+'</span><br/>'+
+						'<span class="prop2"></span>'+
+					'</div>'+
+					'<div class="prop_hdcnrt">'+
+						'<span class="prop3">'+type+'</span><br/>'+
+						'<span class="prop4">'+listing_type+'</span>'+
+					'</div>'+
+					'<div class="clearing"></div>'+
+				'</div>'+
+				'<div class="prop_hdtop">'+
+					'<div class="prop_hdcnlt">'+
+						'<span class="sqft1">'+floor_area+'</span><br/>'+
+						'<span class="bedroom bhk">'+rooms+'</span>'+
+						'<span class="bathroom rest">'+bathrooms+'</span>'+
+					'</div>'+
+					'<div class="prop_hdcnrt">'+
+						'<span class="amt3">'+price+'</span>'+
+						'<div class="socialize">'+
+							'<a href="https://www.facebook.com/" class="fb"><span></span>facebook</a>'+
+							'<a href="https://in.linkedin.com/" class="lin"><span></span>linkedin</a>'+
+						'</div>'+
+					'</div>'+
+					'<div class="clearing"></div>'+
+				'</div>'
+			/////////////
+			);
+	    	$(".prop_img").append(
+	    			'<img src="images/img/img1.png" alt=" " />'
+	 	    	///////////
+	    			 );
+	     	$(".prodeails").append(
+
+
+	     		'<div data-role="tabs" id="tabs">'+
+	     		  '<div data-role="navbar">'+
+	     		   '<ul>'+
+	     		      '<li><a href="#details" data-ajax="false">Details</a></li>'+
+	     		      '<li><a href="#amentities" data-ajax="false">Amentities</a></li>'+
+	     		    '</ul>'+
+	     		  '</div>'+
+	     		  '<div id="details" class="ui-body-d ui-content">'+
+	     			    '<h3>Descriptions:</h3>'+
+	     			    '<div class="details_pt">'+
+	     				    '<label class="left">Title</label>:'+
+	     				    '<span>'+address+' </span>'+
+	     				    '<div class="clear"></div>'+
+	     			    '</div>'+
+	     			    /*
+	     			    '<div  class="details_pt">'+
+	     				    '<label class="left">Address</label>:'+
+	     				    '<input type="text" class="right"/>'+
+	     				    '<div class="clear"></div>'+
+	     				'</div>'+
+	     				*/
+
+	     				/*        extra..........
+	     			    '<div class="details_pt">'+
+	     			       	'<label class="left">Price</label>:'+
+	     				    '<span>'+price+'</span>'+
+	     				    '<div class="clear"></div>'+
+	     			    '</div>'+
+	     			    '<div class="details_pt">'+
+	     			    	'<label class="left">District</label>:'+
+	     				    '<span></span>'+
+	     				    '<div class="clear"></div>'+
+	     			    '</div>'+
+	     			    '<div class="details_pt">'+
+	     			    	'<label class="left">Type</label>:'+
+	     				    '<span>'+type+'</span>'+
+	     				    '<div class="clear"></div>'+
+	     			    '</div>'+
+	     			    '<div class="details_pt">'+
+	     				    '<label class="left">Postal Code</label>:'+
+	     				    '<span></span>'+
+	     				    '<div class="clear"></div>'+
+	     			    '</div>'+
+	     			    '<div class="details_pt">'+
+	     				    '<label class="left">Build In</label>:'+
+	     				    '<span>'+floor_area+'</span>'+ 
+	     				    '<div class="clear"></div>'+
+	     			    '</div>'+
+	     		'</div>'+
+	     		 ' <div class="clearing"></div>'+
+	     			 '<div id="amentities">'+
+	     			  	'<h3>Amendments:</h3>'+
+	     			   ' <div class="amt">'+
+	     				    '<label class="left">Paid Parking</label>:'+
+	     				    '<input type="text" class="right"/>'+
+	     				    '<div class="clear"></div>'+
+	     			   ' </div>'+
+	     			    '<div class="amt">'+
+	     				   ' <label class="left">Parking Spaces</label>:'+
+	     				    '<input type="text" class="right"/>'+
+	     				   ' <div class="clear"></div>'+
+	     				'</div>'+
+	     			    '<div class="amt">'+
+	     			       '	<label class="left">Bike Rocks</label>:'+
+	     				    '<input type="text" class="right"/>'+
+	     				    '<div class="clear"></div>'+
+	     			    '</div>'+ 
+	     			    '<div class="amt">'+
+	     			    	'<label class="left">Internet</label>:'+
+	     				    '<input type="text" class="right"/>'+
+	     				    '<div class="clear"></div>'+
+	     			    '</div>'+
+	     			    '<div class="amt">'+
+	     			    	'<label class="left">Gym</label>:'+
+	     				    '<input type="text" class="right"/>'+
+	     				    '<div class="clear"></div>'+
+	     			    '</div>'+
+	     			    '<div class="amt">'+
+	     				    '<label class="left">Swimming Pool</label>:'+
+	     				    '<input type="text" class="right"/>'+
+	     				    '<div class="clear"></div>'+
+	     			    '</div>'+
+	     			    '<div class="amt">'+
+	     				    '<label class="left">Central Airconditioning</label>:'+
+	     				    '<input type="text" class="right"/>'+
+	     				    '<div class="clear"></div>'+
+	     			  '</div>'+
+	     			  
+	     			 ' <div class="clearing"></div>'+
+	     			// ' <button>save</button>'+
+	     			  
+	     		  '</div>'+
+	     		  
+	     		'</div>'
+
+
+	 	     	
+ 	    	////////////
+ 		);
+	        	
+	        	
+	        });  //each end.
+	       
+	   }   //end of page cond
+	    
+	    //before search here
+	  ///////////////
+	 	}); //pagebefore
+	    
+}  //success
+else
+{
+  alert("Sorry no property list details for particular property!");
+  window.location.assign(baseurl()+"/postproperty.html");   //failure
+}
+
+                    },
+error: function (xhr, ajaxOptions, thrownError) {
+//alert(xhr.status);
+//alert(thrownError);
+alert("Sorry! network problem");                      	
+}
+
+});
+
+}
+*/
+
+</script>
+
+

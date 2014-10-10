@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<title>Property</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/functionspropertyajax.js"></script>
+
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+<link rel="stylesheet" href="css/app_property.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+</head>
+<body>
+<script>
+  $(document).on({
+          ajaxStart: function() { 
+            $.mobile.loading('show');
+            console.log('getJSON starts...');
+          },
+          ajaxStop: function() {
+            $.mobile.loading('hide');
+            console.log('getJSON ends...');
+          }    
+        });
+</script>
+<div data-role="page" id="profile" class="ui-responsive-panel">
+	<header class="header-stn"  data-role="header" data-position="fixed">
+		<!-- <a href="javascript:history.back()" class="hddiv ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all goback"></a> -->
+			<a href="#nav-panel" class="hddiv slide_menu bar" data-icon="bars" data-ajax="false"></a>
+		<div class="apn_brf hddiv div">
+			<a href="#" class="appoin_brf" data-ajax="false" id="propertylist"><span></span></a>
+		</div>
+		<div class="apn_apnt hddiv div">
+			<a href="#" class="appoin_apnt" title="chat" data-ajax="false" id="testmsg"><span></span></a>
+		</div>
+		<div class="apn_ple hddiv div">
+			<a href="aboutus.html" class="appoin_ple" title="aboutus" data-ajax="false"><span></span></a>
+		</div>
+		<a href="#" class="slide_menu plus" data-icon="plus" data-ajax="false"  id="testnewprop1"></a>
+		<div class="clearing"></div>
+	</header>
+	<section data-role="content" class="content-container" style="padding:5px;">
+	<script type="text/javascript">
+	$(document).on('blur', 'input, textarea', function() {
+	    setTimeout(function() {
+	        window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+	    }, 0);
+	});
+	</script>
+		<div class="prop_head">
+			<div class="profile_form">
+				<div class="profile username">
+					<label>username</label>
+					<input type="text" id="username" Placeholder="Enter first name" >
+				</div>
+				<!-- 
+				<div class="profile username">
+					<label>surname</label>
+					<input type="text" id="surname" Placeholder="Enter surname" >
+				</div>
+				-->
+					
+				<div class="profile username">
+					<label>Email ID</label>
+					<!-- <input type="text" value="Enter Email ID" onblur="if(this.value == '') { this.value='Enter Email ID'}" onfocus="if (this.value == 'Enter Email ID') {this.value=''}">-->
+					<input type="email" id="email" name="email" Placeholder="Enter Email ID..." >
+				</div>
+				
+				<div class="profile username">
+					<label>Password</label>
+					<input type="password" id="password" Placeholder="Enter Password" >
+				    </div>
+				    
+				
+				<div class="profile username">
+					<label>Phone</label>
+					<input type="text" id="phone" Placeholder="Enter Phone No." >
+				    </div>
+				    
+				    
+			 <textarea rows="" cols="" Placeholder="Address" id="address"></textarea> 
+			</div>
+			<div class="pro_update">
+				<div class="update">
+				<button id="updatep1" class="updatepp" data-role="ajax">Update</button>
+				</div>
+				<div class="change_pwd">
+					<button id="cancelp" class="cancelpp" data-role="ajax">CANCEL</button>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</section>
+	<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="nav-panel" class="navpan">
+		<div class="myprf">
+			<div class="img" class="img1"></div>
+			<div class="name"></div><div class="clear"></div>	
+		</div>
+		<ul data-role="listview" class="clpslst">
+			<li><a href="#" class="postpropertylist" data-ajax="false">Property Listings</a></li>
+			<li><a href="#" class="managelist">Manage Listing</a></li>
+			<li><a href="#" class="messages">Messages</a></li>
+			<li><a href="#" class="appointment">Make an Appointment</a></li>
+			<li><a href="news.html">News</a></li>
+		</ul>
+		<div class="appshare" id="appshareroot" data-role="collapsible" data-iconpos="right"><h3>APPS</h3>
+	   		<ul data-role="listview"><li id="appshare1"><a href="#popupCloseRight" data-rel="popup">share</a><span class="autop"></span></li><li id="apppost1"><a>autopost</a><span class="share"></span></li></ul>
+		</div>
+		<div class="navprof" id="profile" data-role="collapsible" data-iconpos="right"><h3>Profile</h3>
+	   		<ul data-role="listview"><li id="profile1"><a>account settings</a></li><li id="logoutpp"><a>logout</a></li><li id="exitpp"><a>Exit</a></li></ul>
+		</div>
+		<div data-role="popup" id="popupCloseRight" class="ui-content" style="width:250px">
+	    	<a href="#" data-rel="back" class="closemail ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	    	<input type="text" id="emailshare1"  placeholder="enter the email id..."/>
+	    	<a class="sendmail" href="#"><span class="iconmail ui-btn-icon-notext ui-icon-mail"></span><span class="sendtxt">Send</span></a>
+		</div>
+	</div>
+	<!-- <footer data-role="footer" data-position="fixed"></footer> -->
+</div>
+</body>
+</html>
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+	var userid=getCookie('useridset');
+
+	if(userid=="" || userid==null)
+		{
+		 alert("Sorry your login expired!");
+		 window.location.assign(baseurl()+"/index.html");
+		}
+	var loginas=getCookie('loginas');
+   // var agentid=getCookie('agentid');
+  //  var userreg=getCookie('userreg');
+
+if(loginas=='agent')
+{
+	$('#testnewprop1').css('display', 'block');
+}
+else
+{
+	$('#testnewprop1').css('display', 'none');
+}
+
+    /*
+    if(userid=='guestid')  //guest user
+	{
+		//$('.testnewprop').css('display', 'none');
+    	$('#testnewprop1').css('display', 'none');
+	}
+    if(agentid!="" || agent!=null)  //agent login
+	{
+		//$('#LinkDisplay').css('display', 'block');
+	//	$('.testnewprop').show();
+		$('#testnewprop1').css('display', 'block');
+	}
+    else
+    {
+    	$('#testnewprop1').css('display', 'none');
+    }
+    */
+	/*
+    if(userreg!=null || userreg!="" ||userreg!='undefined')
+    {
+    	$('#testnewprop1').css('display', 'none');
+    }
+   */
+	getalldetailsprofile();
+});
+
+////get details of accounts..............
+
+function getalldetailsprofile()
+{
+	
+	var userid=getCookie('useridset');
+	$.ajax({
+		type: "POST",
+		url: baseurl()+"/WS/p_request.php?action=getaccountdetails",  //local & server
+        data: "userid="+userid,
+		dataType: "json",
+		async: 'true',
+		success: function(msg) {     
+		if(msg.Result=="Success")   //message from response
+		{
+			if(msg.recordn)
+			{
+			 var json =msg.recordn;
+			}
+           if(msg.recordnn)
+            {
+				var json =msg.recordnn;
+			}
+		
+			 var stuff3=json;
+		 	 var data=[];
+		 	     
+		 	  $.each(stuff3, function(idx, obj) {
+		 	        var username=obj.username;
+	 	        	var email=obj.email;
+	 	        	var id=obj.id;
+	 	        	var phone=obj.phone;
+	 	        	var password=obj.password;
+	 	        	var address=obj.address;
+	 	        	
+	 	        	$("#username").val(username);
+	 	       	    $("#email").val(email);
+	 	         	$("#password").val(password);
+	 		        $("#phone").val(phone);
+	 		        $("#address").val(address);
+	 		        
+	 		     
+	 	           
+		 	  });
+		
+		}
+		else
+		{
+
+			alert("Sorry no account exists to set for this id!");
+		   $.mobile.changePage("profile.html");   //failure
+		}
+
+		                    },
+		error: function (xhr, ajaxOptions, thrownError) {
+		//alert(xhr.status);
+		//alert(thrownError);
+		alert("Sorry! network problem");  
+		window.location.assign(baseurl()+"/index.html");
+		}
+
+
+
+		});
+
+}
+////////////////////
+//////////////update profile footer.....
+//$("#updatep").click(function(){
+$("#updatep1").click(function(){
+
+	
+	var userid=getCookie('useridset');
+
+
+	if(userid=="" || userid==null)
+		{
+		 alert("Sorry your login expired!");
+		 window.location.assign(baseurl()+"/index.html");
+		}
+	
+var firstname=$("#username").val();
+var password=$("#password").val();
+var email=$("#email").val();
+var address=$("#address").val();
+var phone=$("#phone").val();
+
+
+if(firstname=="")
+	{
+	alert("Firstname should not be empty!");
+	
+	return false;
+	 $('#firstname').focus();
+	}
+
+else if(email=="")
+	{
+	alert("Email should not be empty!");
+	 $('#email').focus();
+	return false;
+	}
+else if(password=="")
+{
+	alert("Password should not be empty!");
+	 $('#password').focus();
+	 return false;
+}
+else if(phone=="")
+{
+	alert("Phone should not be empty!");
+	 $('#phone').focus();
+	 return false;
+}
+else if(address=="")
+{
+	address="";
+	//alert("Address should not be empty!");
+	// $('#address').focus();
+	// return false;
+}
+else if(email!="")
+{
+	    var email1 = document.getElementById('email');
+	    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+         if (!filter.test(email1.value)) {
+	    alert('Please provide a valid email address');
+	    email1.focus;
+	    return false;
+         }
+        
+}
+
+if(phone!="")
+{
+	// var stripped = phone.replace(/[\(\)\.\-\ ]/g, '');    
+
+	  
+	   if (isNaN(phone)) {
+	        alert("The phone number contains illegal characters!");
+	        phone.focus;
+	        return false;
+	    }
+	   else if(!(phone.length==10))
+	   {
+	        alert("The phone number must contains 10 numbers!");
+	        phone.focus;
+	        return false;
+	   }
+	    
+}
+
+$.ajax({
+type: "POST",
+url: baseurl()+"/WS/p_request.php?action=update_profile",  //local & server
+//url:"http://localhost/kup/WS/st_request.php?action=change_password",
+//url: "http://thatco.com/kup/WS/st_request.php?action=change_password",
+data: "userid="+userid+"&firstname="+firstname+"&phone="+phone+"&email="+email+"&address="+address+"&password="+password,
+dataType: "json",
+async: 'true',
+success: function(msg) {     
+if(msg.Result=="Success")   //message from response
+{
+  //alert("successfully updated the profile");
+	alert(msg.Message);
+ // $.mobile.changePage("login.html");  //success
+ // window.location.assign(baseurl()+"/index.html");  //before login.html
+	 window.location.assign(baseurl()+"/index.html");  //instead post
+}
+else
+{
+ // alert("Failure to update the profile");
+	  alert("Sorry this mail id doesn't exists!");
+  $.mobile.changePage("profile.html");   //failure
+}
+
+                    },
+error: function (xhr, ajaxOptions, thrownError) {
+//alert(xhr.status);
+//alert(thrownError);
+alert("Sorry! network problem");  
+window.location.assign(baseurl()+"/index.html");
+}
+
+
+
+});
+});
+///
+</script>

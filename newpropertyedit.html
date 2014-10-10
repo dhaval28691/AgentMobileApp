@@ -1,0 +1,1317 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<title>Property</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/functionspropertyajax.js"></script>
+
+<script type="text/javascript" src="js/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script type="text/javascript" src="js/functionspropertyajax.js"></script>
+
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+<link rel="stylesheet" href="css/app_property.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+<script type="text/javascript" language="javascript">
+	$(function() {
+		$('#foo4').carouFredSel({
+			//alert(12);
+			responsive: false,
+			auto:false,
+			prev: '#prev',
+			next: '#next',
+			 scroll : {
+             items  : 1,
+     	   } 
+		});
+	});
+</script>
+
+</head>
+<body>
+<script>
+  $(document).on({
+          ajaxStart: function() { 
+            $.mobile.loading('show');
+            console.log('getJSON starts...');
+          },
+          ajaxStop: function() {
+            $.mobile.loading('hide');
+            console.log('getJSON ends...');
+          }    
+        });
+</script>
+<div data-role="page" id="newproperty" class="ui-responsive-panel">
+	<header class="header-stn"  data-role="header" data-position="fixed">
+		<!-- <a href="javascript:history.back()" class="hddiv ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all goback"></a> -->
+		<a href="#nav-panel" class="hddiv slide_menu bar" data-icon="bars" data-ajax="false"></a>
+		<div class="apn_brf hddiv div">
+			<a href="#" class="appoin_brf" data-ajax="false" id="propertylist"><span></span></a>
+		</div>
+		<div class="apn_apnt hddiv div">
+			<a href="#" class="appoin_apnt" title="chat" data-ajax="false" id="testmsg"><span></span></a>
+		</div>
+		<div class="apn_ple hddiv div">
+			<a href="#" class="appoin_ple" title="aboutus" data-ajax="false" id="about1"><span></span></a>
+		</div>
+		<a href="#" class="slide_menu plus" data-icon="plus" data-ajax="false"  id="testnewprop1"></a>
+		<div class="clearing"></div>
+	</header>
+	<section data-role="content" class="content-container" style="padding:2px;">
+	<script type="text/javascript">
+	$(document).on('blur', 'input, textarea', function() {
+	    setTimeout(function() {
+	        window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+	    }, 0);
+	});
+	</script>
+		<div class="apnt_tle">Create New Property</div>
+			<div class="info_tle">Photos</div>
+			<div class="list_carousel responsive" id="images1">
+		 
+			<ul id="foo4"> 
+				<!-- <li><img id="uploadPreview" style="width: 30%; height: 30%;" />
+					<input id="uploadImage" type="file" name="myPhoto" data-buttonText="Find file" onchange="PreviewImage();" />
+					<script type="text/javascript">
+					    function PreviewImage() {
+					        var oFReader = new FileReader();
+					        oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+					        oFReader.onload = function (oFREvent) {
+					            document.getElementById("uploadPreview").src = oFREvent.target.result;
+					      };
+					   };
+					</script></li> -->
+					
+					
+				<!--  <li><img src="./images/img/img1.png"></li> -->
+				  <!-- 
+				<li><img src="./images/img/house1.jpg"></li>
+				
+				<li><img src="./images/img/test.jpg"></li>
+				<li><img src="./images/img/img1.png"></li>
+				<li><img src="./images/img/house1.jpg"></li>
+				<li><img src="./images/img/test.jpg"></li>
+			 -->
+			<!--  <li class="uploadnewimage"><img src="" id="getimag1"></li>  -->
+			  </ul>  
+			<a id="prev" class="prev" href="#">&nbsp;</a>
+			<a id="next" class="next" href="#">&nbsp;</a>
+			<div class="clearfix"></div>
+			<a href="#upimg" class="addimgp" data-rel="popup" data-transition="slide">add</a>
+			<a href="#" class="removeimg">remove</a>
+			    <div id="upimg" data-role="popup" class="ui-content">
+					 <!-- <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a> -->
+					 <form id="uploadForm" action="" method="post">
+						<input name="userImage" id="userImage" type="file" class="inputFile" />
+				     	<a href="#" data-rel="back" data-role="button" id="iimsave">save</a>
+					</form>
+				</div>
+		</div>
+			
+		<div class="prop_info">
+			<div class="info_tle">property Information</div>
+			<!--
+			<div class="info_select">
+				<div style="position:relative;width:100%;height:25px;border:0;padding:0;margin:0;">
+				    <select style="position:absolute;top:0px;left:0px;width:100%; height:25px;line-height:20px;margin:0;padding:0;" onchange="document.getElementById('displayValue').value=this.options[this.selectedIndex].text; document.getElementById('idValue').value=this.options[this.selectedIndex].value;">
+				        <option></option>
+				        <option value="one">property 1</option>
+				        <option value="two">property 2</option>
+				        <option value="three">property 3</option>
+				    </select>
+				    <input type="text" name="displayValue" value="Reflection At Keppel Bay" id="displayValue" style="position:absolute;top:-5px;left:0px;width:183px;width:180px\9;#width:180px;height:23px;z-index:999; height:21px\9;#height:18px;border:1px solid #556;" onfocus="this.select()">
+				</div>
+			</div>
+			-->
+			
+		 
+			<div data-role="tabs" id="tabs">
+			  <!-- 
+			  <div data-role="navbar">
+			    <ul>
+			      <li><a href="#sale" data-ajax="false">For Sale</a></li>
+			      <li><a href="#rent" data-ajax="false">For Rent</a></li>
+			      <li><a href="#roomrental" data-ajax="false">Room Rental</a></li>
+			    </ul>
+			  </div>
+			 -->
+			  <div id="sale" class="ui-body-d ui-content" style="padding:0px;">
+			      <!--   <h3>First tab contents</h3>  -->
+				    <div>
+					    <div class="left">Title</div>
+					    <div class="right"><input type="text" id="addresstitle" Placeholder="Title of property" /><span></span></div>
+				    </div>
+				    <div>
+					    <div class="left">Address</div>
+					    <div class="right"><input type="text" id="streetname" Placeholder="Address of property" /><span></span></div>
+					</div>
+				    <div>
+				       	<div class="left">Price</div>
+				    	<div class="right"><input type="text" id="asking_price" Placeholder="Price of property" /><span></span></div>
+				    </div>
+				    <div>
+				    	<div class="left">District</div>
+				    	<div class="right"><input type="text"  id="district" Placeholder="District" /><span></span></div>
+				    </div>
+			
+				    <div>
+				    	<div class="left">Type</div>
+				    	<div class="right"><input type="text" id="type" Placeholder="Type of property" /><span></span></div>
+				    </div>
+				   <!-- 
+			<div >
+				<div class="left">Type</div>
+				<a href="#popupDialog1" data-rel="popup" data-position-to="window" data-transition="pop" class="type_property" >
+				 <div class="right"><input type="text" id="type" Placeholder="Type of property" /><span></span></div>
+				<a href="#popupDialog1" data-rel="popup" data-position-to="window" data-transition="pop" class="type_property"  name="getproperty"><span></span></a>
+			</div>
+			
+			 -->
+				    <div>
+					    <div class="left">Postal Code</div>
+					    <div class="right"><input type="text" id="postcode" Placeholder="Postal code" /><span></span></div>
+				    </div>
+				      <div>
+					    <div class="left">Area</div>
+					    <div class="right"><input type="text" id="area" Placeholder="Area"/><span></span></div>
+				    </div>
+				      <div>
+					    <div class="left">Description</div>
+					    <div class="right"><input type="text" id="description" Placeholder="Description" /><span></span></div>
+				    </div>
+				      <div>
+					    <div class="left">Bed rooms</div>
+					    <div class="right"><input type="text" id="rooms" Placeholder="Rooms" /><span></span></div>
+				    </div>
+				      <div>
+					    <div class="left">Bath rooms</div>
+					    <div class="right"><input type="text" id="bathrooms" Placeholder="Bath rooms" /><span></span></div>
+				
+				    </div>
+				    
+				     <div>
+					    <div class="left">Co Broke</div>
+					    <div class="right"><input type="checkbox" id="cobroke" value="1"/><span></span></div>
+				
+				    </div>
+				    
+				  
+				     <div id="amen" style="display: none;">
+					    <div class="left">Amenities</div>
+					    <div class="right"><input type="text" id="amenall" Placeholder="Facilities" /><span></span></div>
+				
+				    </div>
+				  
+				    <div>
+					    <div class="left">Listing Type</div>
+					    <div class="right"><input type="text" id="listing_type" value="" />  <!--  removed hodden-- text, make value empty from SALE added label........... -->
+					    	<input type="hidden" name="imageget" id="imageget" value="" />
+					    	<input type="hidden" name="propertyid1" id="propertyid1" value="" />
+					     
+					      <input type="hidden" name="a1" id="a11" value="" />
+					      <input type="hidden" name="a2" id="a22" value="" />
+					      <input type="hidden" name="a3" id="a33" value="" />
+					      <input type="hidden" name="a4" id="a44" value="" />
+					    	</div>
+				    </div>
+				    <div class="ametpop">
+				    
+				    	<a href="#popupCloseRight3" data-rel="popup" data-transition="flip">Amenities</a>
+				    </div>
+				    
+				   <div data-role="popup" id="popupCloseRight3" class="ui-content">
+				   	<h3>Amenities</h3>
+					 <!--    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a> --> 
+						<div class="ament">
+						
+						<form> <!--  2 & 3 have previous bkp -->
+							<div data-role="fieldcontain">
+								<label for="name">Amenities 1</label>
+								<input type="text" name="a1" id="a1" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Amenities 2</label>
+								<input type="text" name="a2" id="a2" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Amenities 3</label>
+								<input type="text" name="a3" id="a3" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Amenities 4</label>
+								<input type="text"  name="a4" id="a4" value="" />
+							</div>
+							<!-- <button name="amensave" id="amensave" data-rel="back" class="ui-icon-delete">save</button>  -->
+	                        <a href="#" data-role="button" data-rel="back" name="amensave" id="amensave" class="ui-icon-delete">save</a>
+							
+						</form>
+					</div>
+				</div>
+			
+				  <!--  <div>
+					    <div class="left">Build In</div>
+					    <div class="right"><input type="text" value="Build in" onfocus="if (this.value == 'Build in') {this.value=''}" onblur="if(this.value == '') { this.value='Build in'}"/><span></span></div>
+				  </div>   -->
+			  </div>
+			  <div id="rent">
+			     
+				   <!--  <h3>Second tab contents</h3>  -->
+				     		    <div>
+					    <div class="left">Title</div>
+					    <div class="right"><input type="text" id="addresstitle" Placeholder="Title of property" /><span></span></div>
+				    </div>
+				    <div>
+					    <div class="left">Address</div>
+					    <div class="right"><input type="text" id="streetname" Placeholder="Address of property" /><span></span></div>
+					</div>
+				    <div>
+				       	<div class="left">Price</div>
+				    	<div class="right"><input type="text" id="asking_price" Placeholder="Price of property" /><span></span></div>
+				    </div>
+				    <div>
+				    	<div class="left">District</div>
+				    	<div class="right"><input type="text"  id="district" Placeholder="District" /><span></span></div>
+				    </div>
+				    <div>
+				    	<div class="left">Type</div>
+				    	<div class="right"><input type="text" id="type" Placeholder="Type of property" /><span></span></div>
+				    </div>
+				    <div>
+					    <div class="left">Postal Code</div>
+					    <div class="right"><input type="text" id="postcode" Placeholder="Postal code" /><span></span></div>
+				    </div>
+				      <div>
+					    <div class="left">Area</div>
+					    <div class="right"><input type="text" id="area" Placeholder="Area"/><span></span></div>
+				    </div>
+				      <div>
+					    <div class="left">Description</div>
+					    <div class="right"><input type="text" id="description" Placeholder="Description" /><span></span></div>
+				    </div>
+				      <div>
+					    <div class="left">Bed rooms</div>
+					    <div class="right"><input type="text" id="rooms" Placeholder="Rooms" /><span></span></div>
+				    </div>
+				      <div>
+					    <div class="left">Bath rooms</div>
+					    <div class="right"><input type="text" id="bathrooms" Placeholder="Bath rooms" /><span></span></div>
+				    </div>
+				  <!--  <div>
+					    <div class="left">Build In</div>
+					    <div class="right"><input type="text" value="Build in" onfocus="if (this.value == 'Build in') {this.value=''}" onblur="if(this.value == '') { this.value='Build in'}"/><span></span></div>
+				  </div>   -->
+				  <!--  
+				    <div>
+					    <div class="left">Facilities</div>
+					    <div class="right"><input type="text" id="facilities" Placeholder="Facilities" /><span></span></div>
+				
+				    </div>
+				    -->
+				     <div id="amen" style="display: none;">
+					    <div class="left">Amenities</div>
+					    <div class="right"><input type="text" id="amenall" Placeholder="Facilities" /><span></span></div>
+				
+				    </div>
+ 				  <div>
+					    <div class="left"></div>
+					    <div class="right"><input type="hidden" id="listing_type" value="RENT" />
+					    <input type="hidden" name="imageget" id="imageget" value="" />
+					    
+					       <input type="hidden" name="a1" id="a11" value="" />
+					      <input type="hidden" name="a2" id="a22" value="" />
+					      <input type="hidden" name="a3" id="a33" value="" />
+					      <input type="hidden" name="a4" id="a44" value="" />
+					      </div>
+				    </div>
+				    <div class="ametpop">
+				    	<a href="#popupCloseRight4" data-rel="popup" data-transition="slide">Amenities</a>
+				    </div>
+				    
+				   <div data-role="popup" id="popupCloseRight4" class="ui-content">
+				   	<h3>Amenities</h3>
+					    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+						<div class="ament">
+						
+						<form>
+							<div data-role="fieldcontain">
+								<label for="name">Amenities 1</label>
+								<input type="text" name="a1" id="a1" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Amenities 2</label>
+								<input type="text" name="a2" id="a2" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Amenities 3</label>
+								<input type="text" name="a3" id="a3" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Amenities 4</label>
+								<input type="text"  name="a4" id="a4" value="" />
+							</div>
+							
+							<!-- 
+							<div data-role="fieldcontain">
+								<label for="name">Type</label>
+								<input type="text" name="name" id="name" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Postal Code</label>
+								<input type="text" name="name" id="name" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Build In</label>
+								<input type="text" name="name" id="name" value="" />
+							</div>
+							 -->
+							<button name="amensave" id="amensave" data-rel="back" class="ui-icon-delete">save</button>
+						</form>
+					</div>
+				</div>
+			
+			  </div>
+			  <div id="roomrental">
+				  <!--    <h3>Third tab contents</h3> -->
+				      		    <div>
+					    <div class="left">Title</div>
+					    <div class="right"><input type="text" id="addresstitle" Placeholder="Title of property" /><span></span></div>
+				    </div>
+				    <div>
+					    <div class="left">Address</div>
+					    <div class="right"><input type="text" id="streetname" Placeholder="Address of property" /><span></span></div>
+					</div>
+				    <div>
+				       	<div class="left">Price</div>
+				    	<div class="right"><input type="text" id="asking_price" Placeholder="Price of property" /><span></span></div>
+				    </div>
+				    <div>
+				    	<div class="left">District</div>
+				    	<div class="right"><input type="text"  id="district" Placeholder="District" /><span></span></div>
+				    </div>
+				    <div>
+				    	<div class="left">Type</div>
+				    	<div class="right"><input type="text" id="type" Placeholder="Type of property" /><span></span></div>
+				    </div>
+				    <div>
+					    <div class="left">Postal Code</div>
+					    <div class="right"><input type="text" id="postcode" Placeholder="Postal code" /><span></span></div>
+				    </div>
+				      <div>
+					    <div class="left">Area</div>
+					    <div class="right"><input type="text" id="area" Placeholder="Area"/><span></span></div>
+				    </div>
+				      <div>
+					    <div class="left">Description</div>
+					    <div class="right"><input type="text" id="description" Placeholder="Description" /><span></span></div>
+				    </div>
+				      <div>
+					    <div class="left">Bed rooms</div>
+					    <div class="right"><input type="text" id="rooms" Placeholder="Rooms" /><span></span></div>
+				    </div>
+				      <div>
+					    <div class="left">Bath rooms</div>
+					    <div class="right"><input type="text" id="bathrooms" Placeholder="Bath rooms" /><span></span></div>
+				    </div>
+				     <div id="amen" style="display: none;">
+					    <div class="left">Amenities</div>
+					    <div class="right"><input type="text" id="amenall" Placeholder="Facilities" /><span></span></div>
+				
+				    </div>
+				  <!--  <div>
+					    <div class="left">Build In</div>
+					    <div class="right"><input type="text" value="Build in" onfocus="if (this.value == 'Build in') {this.value=''}" onblur="if(this.value == '') { this.value='Build in'}"/><span></span></div>
+				  </div>   -->
+				   <!-- 
+				    <div>
+					    <div class="left">Facilities</div>
+					    <div class="right"><input type="text" id="facilities" Placeholder="Facilities" /><span></span></div>
+				
+				    </div>
+				     -->
+				    <div>
+					    <div class="left"></div>
+					    <div class="right"><input type="hidden" id="listing_type" value="SOLD" />
+					    <input type="hidden" name="imageget" id="imageget" value="" />
+					    
+					      <input type="hidden" name="a1" id="a11" value="" />
+					      <input type="hidden" name="a2" id="a22" value="" />
+					      <input type="hidden" name="a3" id="a33" value="" />
+					      <input type="hidden" name="a4" id="a44" value="" />
+					     </div>
+				
+				    </div>
+				    <div class="ametpop">
+				      
+				    	<a href="#popupCloseRight5" data-rel="popup" data-transition="slide">Amenities</a>
+				    </div>
+				    
+				   <div data-role="popup" id="popupCloseRight5" class="ui-content" >
+				   	<h3>Amenities</h3>
+					    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+						<div class="ament">
+						
+						<form>
+						<!-- 
+							<div data-role="fieldcontain">
+								<label for="name">Title</label>
+								<input type="text" name="name" id="name" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Address</label>
+								<input type="text" name="name" id="name" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Price</label>
+								<input type="text" name="name" id="name" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">District</label>
+								<input type="text" name="name" id="name" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Type</label>
+								<input type="text" name="name" id="name" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Postal Code</label>
+								<input type="text" name="name" id="name" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Build In</label>
+								<input type="text" name="name" id="name" value="" />
+							</div>
+							 -->
+							   <div data-role="fieldcontain">
+								<label for="name">Amenities 1</label>
+								<input type="text" name="a1" id="a1" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Amenities 2</label>
+								<input type="text" name="a2" id="a2" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Amenities 3</label>
+								<input type="text" name="a3" id="a3" value="" />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="name">Amenities 4</label>
+								<input type="text"  name="a4" id="a4" value="" />
+							</div>
+							<button name="amensave" id="amensave" data-rel="back" class="ui-icon-delete">save</button>
+						</form>
+					</div>
+				</div>
+			
+			  </div>
+		 </div>  
+			
+		</div>
+	</section>
+<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="nav-panel" class="navpan">
+		<div class="myprf">
+			<div class="img" class="img1"></div>
+			<div class="name"></div><div class="clear"></div>	
+		</div>
+		<ul data-role="listview" class="clpslst">
+			<li><a href="#" class="postpropertylist" data-ajax="false">Property Listings</a></li>
+			<li><a href="#" class="managelist">Manage Listing</a></li>
+			<li><a href="#" class="messages">Messages</a></li>
+			<li><a href="#" class="appointment">Make an Appointment</a></li>
+			<li><a href="#" class="news">News</a></li>
+		</ul>
+		<div class="appshare" id="appshareroot" data-role="collapsible" data-iconpos="right"><h3>APPS</h3>
+	   		<ul data-role="listview"><li id="appshare1"><a href="#popupCloseRight" data-rel="popup">share</a><span class="autop"></span></li><li id="apppost1"><a>autopost</a><span class="share"></span></li></ul>
+		</div>
+		<div class="navprof" id="profile" data-role="collapsible" data-iconpos="right"><h3>Profile</h3>
+	   		<ul data-role="listview"><li id="profile1"><a>account settings</a></li><li id="logoutpp"><a>logout</a></li><li id="exitpp"><a>Exit</a></li></ul>
+		</div>
+		<div data-role="popup" id="popupCloseRight" class="ui-content" style="width:250px">
+	    	<a href="#" data-rel="back" class="closemail ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	    	<input type="text" id="emailshare1" placeholder="enter the email id..."/>
+	    	<a class="sendmail" href="#"><span class="iconmail ui-btn-icon-notext ui-icon-mail"></span><span class="sendtxt">Send</span></a>
+		</div>
+	</div>
+			<footer data-role="footer" data-position="fixed">
+				<!-- <button onclick="window.location='propertydetails.html';">Done</button>  -->
+				<button id="propertyedit" name="propertyedit" data-role="ajax">Update</button> 
+			</footer>
+			
+			
+			
+			<!--  property type popup/////////////// -->
+			<!--  
+	<div data-role="popup" id="popupDialog1" class="propertytypes" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+    <div data-role="header" data-theme="a">
+	    	<div class="pickpsr_pop">
+		    	<div class="Pick_No_of_Passengers">Select Type Of Property</div>
+	    	</div>
+			    <div role="main" class="propertype7 ui-content">
+			 
+		     
+		    </div>
+		</div>
+	</div>
+	-->
+</body>
+</html>
+<script type="text/javascript"> 
+$(document).ready(function(e){
+	var userid=getCookie('useridset');
+
+	if(userid=="" || userid==null)
+		{
+		 alert("Sorry your login expired!");
+		 window.location.assign(baseurl()+"/index.html");
+		}
+
+
+	//default some thing.....
+	$listing_type=$('#listing_type').val();
+	if($listing_type==""){
+		$('#listing_type').val('SALE');
+	}
+
+
+	
+	///click popup save in add image......
+	$( "#iimsave" ).click(function() {
+		 $("#uploadForm").submit();
+
+	});
+
+
+	//
+	
+	var propertyide=getCookie('propideditprop');
+
+	if(propertyide!="")
+	{
+	//var id=propertyide;
+	var property_id=propertyide;
+		$.ajax({
+		    type: "POST",
+		   // url: baseurl()+"/WS/p_request.php?action=getpropertylisttoedit",  //local & server
+		    url: baseurl()+"/WS/p_request.php?action=getpropertylist_details",  //local & server
+		    
+		   // data: "id="+id,
+		   data:"property_id="+property_id,  
+		    dataType: "json",
+		    async: 'true',
+		    success: function(msg) {     
+		        if(msg.Result=="Success")   //message from response
+		        {
+		        	   var json =msg.record;
+				       var json1 =msg.record1;
+				      // $.mobile.changePage("propertydetails.html",{data1:json});   //,reqid:json_req}
+				      //   $( document ).on( "pagebeforechange" , function ( event, data ) {
+				        	
+				        	
+				        	 
+				 	  //   if ( data.toPage[0].id == "propertyadetails" ) {
+				 	    // var stuff3 = data.options.data1;
+				 	     var stuff3=json;
+				 	     var stuff4=json1;
+				 	     if(stuff4=="")
+				 	     {
+					 	     stuff4=stuff3;
+					 	    
+				 	     }
+				 	     var data=[];
+				 	  
+				 	      
+				 	       $.each(stuff3, function(idx, obj) {
+				 	         	var price=obj.price;
+				 	        	var floor_area=obj.floor_area;
+				 	        	var streetname=obj.streetname;
+				 	        	var address=obj.address;
+				 	        	var front_status=obj.front_status;
+				 	        	var description=obj.description;
+				 	        	var agent=obj.agent;
+				 	        	var media=obj.media;
+				 	        	var rooms=obj.rooms;
+				 	        	var bathrooms=obj.bathrooms;
+				 	        	var listing_type=obj.listing_type;
+				 	        	var type=obj.type;
+				 	       	    var property_id=obj.property_id;
+
+				 	       	    var postcode=obj.postcode;
+				 	       	    var district=obj.district;
+				 	       	    var co_broke=obj.co_broke;
+
+	                            //place the values...
+								 $('#addresstitle').val(address);
+								 $('#streetname').val(streetname);
+								 $('#asking_price').val(price);
+								 $('#district').val(district);
+								 $('#type').val(type);
+								 $('#postcode').val(postcode);
+								 $('#area').val(floor_area);
+								 $('#description').val(description);
+								 $('#rooms').val(rooms);
+								 $('#bathrooms').val(bathrooms);
+
+								 $('#listing_type').val(listing_type);
+								 $('#propertyid1').val(property_id);
+
+								 if(co_broke=='1')
+								 {
+									 var value='1';
+									 $('#propertyid').val(value);
+									// $("#cobroke").selected(true); //or checked
+									 $('#cobroke').attr('checked','checked');
+								 }
+								 else
+								 {
+									 var value='0';
+									 $('#propertyid').val(value);
+									// $("#cobroke").selected(false);
+									 //$('#cobroke').attr('checked','');
+								 }
+
+								 if(listing_type=="RENT" || listing_type=="SALE" ||listing_type=="SOLD")
+								 {
+									 $('#rent').css('display', 'none');
+									 $('#roomrental').css('display', 'none');
+								    //$("#ui-id-1").removeClass('ui-link ui-btn ui-tabs-anchor ui-btn-active" role="presentation" tabindex="-1" id="ui-id-2');
+                                    //   $('#rent').addClass('ui-link ui-btn ui-tabs-anchor ui-btn-active" role="presentation" tabindex="-1" id="ui-id-2');
+								 }
+				 	       });
+		        	
+		        		var arr = [];
+		        		for (var i = 0; i < stuff4.length; i++) {
+		        		    arr.push(stuff4[i].facilities);
+		        		}
+
+		        		var a1= $('#a1').val(arr[0]);
+						var a2=$('#a2').val(arr[1]);
+						var a3=$('#a3').val(arr[2]);
+					    var a4=$('#a4').val(arr[3]);
+
+						   if(arr[0]=="" ||arr[0]=='undefined' || arr[0]==null) {arr[0]=="";}else{arr[0]=arr[0];} //not applied..
+						   if(arr[1]=="" ||arr[1]=='undefined' || arr[1]==null) {arr[1]=="";}else{arr[1]=arr[1];}
+						   if(arr[2]=="" ||arr[2]=='undefined' || arr[2]==null) {arr[2]=="";}else{arr[2]=arr[2];}
+						   if(arr[3]=="" ||arr[3]=='undefined' || arr[3]==null) {arr[3]=="";}else{arr[3]=arr[3];}
+						   
+								   
+						    
+							$('#amen').css('display', 'block');
+							var amenall=arr[0]+", "+arr[1]+", "+arr[2]+", "+arr[3];
+							if(amenall=="" || amenall=='undefined' ||amenall==null)  //not applied
+							{
+								$('#amenall').val('');	
+							}
+							else
+							{
+							$('#amenall').val(amenall);	 
+							}  
+
+						   //final if undefined === make empty.................
+	                        if($('#amenall').val()=='undefined, undefined, undefined, undefined')
+                           {
+                        	   $('#amenall').val('');
+                           }
+	                       ///////
+
+							 $('#a11').val(arr[0]);
+							 $('#a22').val(arr[1]);
+							 $('#a33').val(arr[2]);
+							 $('#a44').val(arr[3]);
+						 /*
+				 	      $.each(stuff4, function(idx, obj) {
+				 	        	
+		 	        		  var facilities=obj.facilities;
+		 	        		
+		 	        		 if(stuff4==stuff3)
+		 	        		//  if(facilities=="")
+		 	        		  {
+		 	        		  var facilities="No any amentities for this property";
+		 	        		  }
+		 	        		  if(facilities)
+		 	        		  {
+		 	        			 $('#a1').val(facilities);
+								 $('#a2').val(facilities);
+								 $('#a3').val(facilities);
+								 $('#a4').val(facilities);
+				 	        		  
+		 	        		  }
+				 	      });
+				 	      */
+		        		
+		        		
+		        }
+		        else
+		        {
+		        	 alert("Sorry! no property is selected to edit");
+		    		 window.location.assign(baseurl()+"/postpropertymanage.html");  
+		    	
+		         }
+		    
+		                            },
+		    error: function (xhr, ajaxOptions, thrownError) {
+		   // alert(xhr.status);
+		   // alert(thrownError);
+		                            	alert("Sorry! network problem");  
+		                            	 window.location.assign(baseurl()+"/index.html");  
+		  }
+
+		    });  //ajax close to editable data propr get
+			
+	}
+	else
+	{
+		 alert("Sorry! no property is selected to edit");
+		 window.location.assign(baseurl()+"/postpropertymanage.html");  
+	}
+
+	///upload image add just to place n hidden field......................
+	$("#uploadForm").on('submit',(function(e) {
+		//$('#userImage').bind('change', function(e) {
+			
+			e.preventDefault();
+			$.ajax({
+	        	url: "upload.php",
+				type: "POST",
+				data:  new FormData(this),
+				contentType: false,
+	    	    cache: false,
+				processData:false,
+				success: function(data)
+			    {
+				if(data)
+					{
+			var data=data;
+		   //  $('#getimag1').src(data);
+		   
+		   //$('.uploadnewimage img').attr("src");
+		  //  $("#getimag1").attr("src",data);
+		   $('#imageget').val(data);
+					}
+				else
+					{
+				
+					data="";
+					
+					alert("Sorry! no data");
+					
+					}
+				//$('#photoimage').val(uploadimage);
+			    //alert(data);
+			    //exit;
+				//$("#targetLayer").html(data);
+			    },
+			  	error: function() 
+		    	{
+			    	alert("sorry some technical issue!");
+			    	window.location.assign(baseurl()+"/index.html");
+		    	} 	        
+		   });
+		}));
+
+
+	
+	getimages();
+		});
+//////////////
+		$( "#amensave" ).click(function() {
+									
+								
+									var a1=$("#a1").val();
+									var a2=$("#a2").val();
+									var a3=$("#a3").val();
+									var a4=$("#a4").val();
+
+									
+	                                if(a1=="")
+	                                {
+	                                	var amenall=a2+", "+a3+", "+a4;
+	                                }
+	                                else if(a2=="")
+	                                {
+	                                	var amenall=a1+", "+a3+", "+a4;
+	                                }
+	                                else if(a3=="")
+	                                {
+	                                	var amenall=a1+", "+a2+", "+a4;
+	                                }  
+	                                else if(a4=="")
+	                                {
+	                                var amenall=a1+", "+a2+", "+a3;
+	                                }
+	                                else if(a1=="" && a2=="" && a3=="" && a4=="")
+
+	                                {
+	                                var amenall="";
+	                                }
+
+	                                else
+	                                {
+									var amenall=a1+", "+a2+", "+a3+", "+a4;
+	                                }
+									
+									$('#amenall').val(amenall);	   
+
+									
+									$('#amen').css('display', 'block');
+
+
+									 $('#a11').val(a1);
+									 $('#a22').val(a2);
+									 $('#a33').val(a3);
+									 $('#a44').val(a4);
+								});
+	/////////////
+function getimages(){
+	setCookie('mediaid','');
+	$.ajax({
+		type: "POST",
+		url: baseurl()+"/WS/p_request.php?action=get_images_newproperty",  //local & server
+		dataType: "json",
+		async: 'true',
+		success: function(msg) {     
+		    if(msg.Result=="Success")   //message from response
+		    {
+
+		    	
+		    	   
+		    	  if(msg.recordn)
+		    		  {
+		    		  //var media=recordn;
+		    		  var jsonn =msg.recordn;
+		    		  var data=[];
+		    		  $('#foo4').html('');
+		    		  $.each(jsonn, function(idx, obj) {
+		    			  var media=obj.media;
+		    			  var mid=obj.id;
+		    			 
+		    			  if(media)
+			        		{
+			        	 //	var img="http://thatco.com/realhome/images/agent/"+media;  //need to change.
+		    			 //  var img="http://thatco.com/realhome/admin/propertyimages_upload/"+media; 
+		    				 // var img="http://sghomey.com/admin/propertyimages_upload/"+media; 
+		    				   var img_propertylistimage=getCookie('img_propertylistimage');
+			 	        	    //var img="http://sghomey.com/admin/propertyimages_upload/"+media; 
+			 	        	    var img=img_propertylistimage+media;   //dynamic from js
+			        		}
+			        			else
+			        		{
+				        		var img=baseurl()+"/images/background/noimages.png";
+				        		}
+		    			  $("#foo4").append(
+		    					  '<input type="hidden" id="media" value="'+media+'">'+  //img
+		    					  '<li id="'+mid+'" class="mediaid" ><img src='+img+'></li>'
+		    					  
+		    						
+		    					);
+		    		  }); ///each
+
+				    		  ///to scroll images pics
+		    		  $('#foo4').carouFredSel({
+		    				//alert(12);
+		    				responsive: false,
+		    				auto:false,
+		    				prev: '#prev',
+		    				next: '#next',
+		    				 scroll : {
+		    	             items  : 1,
+		    	     	   } 
+		    			}); //close
+
+
+                        //to catch img id
+		    			$(".mediaid").click(function(){
+		    				$(this).addClass('remove');
+		    				$(this).siblings().removeClass('remove');
+		    				var mediaid=$(this).attr('id');
+		    				setCookie('mediaid',mediaid);
+		    				//alert("123");
+		    				//alert(mediaid);
+		    				var mediaidget=$("#media").val();
+		    				$('#imageget').val(mediaidget);
+		    	     	   
+		    			});
+
+		    			//to remove image
+		    			$(".removeimg").click(function(){
+		    				//var mediaid=$(this).attr('id');
+		    				var mediaid1=getCookie('mediaid');
+		    				
+		    				if(mediaid1=="" || mediaid1==null)
+		    				{
+			    				alert("please select the image to remove!");
+		    				}
+		    				else
+		    				{
+
+		    					var answer = confirm ("Are you sure want to delete this property image!");
+		    			 		if (answer)
+		    			 		{
+		    				///ajax ---webservices call to remove images from property media based on image id....
+		    				$.ajax({
+		    			        type: "POST",
+		    			        url: baseurl()+"/WS/p_request.php?action=removeimages",  //local & server
+                                data: "id="+mediaid1,
+		    			        dataType: "json",
+		    			        async: 'true',
+		    			        success: function(msg) {     
+		    			            if(msg.Result=="Success")   //message from response
+		    			            {
+		    			            	setCookie('mediaid','');
+		    			            	alert("successfully removed the image");
+		    			            	//getimages();
+		    			            	//$.mobile.changePage("newproperty.html"); 
+		    			            	//window.location.assign(baseurl()+"/newproperty.html");
+		    		       	  
+		    	  if(msg.recordn)
+		    		  {
+		    		  //var media=recordn;
+		    		  var jsonn =msg.recordn;
+		    		
+		    		  var data=[];
+		    		  $('#foo4').html('');
+		    		  $.each(jsonn, function(idx, obj) {
+		    			  var media=obj.media;
+		    			  var mid=obj.id;
+		    			 
+		    			  if(media)
+			        		{
+			        	    //	var img="http://thatco.com/realhome/images/agent/"+media;  //need to change.
+		    				//  var img="http://thatco.com/realhome/admin/propertyimages_upload/"+media; 
+			    			var img_propertylistimage=getCookie('img_propertylistimage');
+		 	        	    //var img="http://sghomey.com/admin/propertyimages_upload/"+media; 
+		 	        	    var img=img_propertylistimage+media;   //dynamic from js
+			        		}
+			        			else
+			        		{
+				        		var img=baseurl()+"/images/background/noimages.png";
+				        		}
+		    			  $("#foo4").append(
+		    					  '<input type="hidden" id="media" value="'+media+'">'+  //img
+		    					  '<li id="'+mid+'" class="mediaid" ><img src='+img+'></li>'
+		    					  
+		    						
+		    					);
+		    		  }); ///each
+		    		  ///to scroll images pics
+		    		  $('#foo4').carouFredSel({
+		    				//alert(12);
+		    				responsive: false,
+		    				auto:false,
+		    				prev: '#prev',
+		    				next: '#next',
+		    				 scroll : {
+		    	             items  : 1,
+		    	     	   } 
+		    			}); //close
+
+
+                        //to catch img id
+		    			$(".mediaid").click(function(){
+		    				var mediaid=$(this).attr('id');
+		    				setCookie('mediaid',mediaid);
+		    				//alert("123");
+		    				//alert(mediaid);
+		    				var mediaidget=$("#media").val();
+		    				$('#imageget').val(mediaidget);
+		    	     	   
+		    			});
+		    		  
+		    		  }
+		    	   else if(msg.recordn=="" || msg.recordn==null)
+		            {
+		            	 alert("All images are removed,now it is empty!");
+		            	 $('#foo4').html('');
+		            	 
+   			       
+		            }	    		 
+		    			             }
+		    			            else
+		    			            {
+			    			            
+		    			             setCookie('mediaid','');
+		    			             alert("Some problem to remove the image");
+		    			            // alert("All images are removed,now it is empty!");
+		    			       
+		    			            }
+		    			        
+		    			                                },
+		    			        error: function (xhr, ajaxOptions, thrownError) {
+		    			        //alert(xhr.status);
+		    			       // alert(thrownError);
+		    			       setCookie('mediaid','');
+		    			       alert("Sorry! network problem"); 
+		    					 window.location.assign(baseurl()+"/index.html");      
+		    			      }
+
+ });
+
+
+
+		    			 		} ///// confirm alert
+		    			 		else
+		    			 		{
+		    			 		}
+
+
+			    				}//condition if not empty select
+	    			        ///////////////////////
+
+
+				    	     	   
+		    			});//close of remove img click.
+
+		    			
+
+		    		  } //if recordn
+
+		    		 
+		     // $.mobile.ajaxEnabled = false;
+		     //  alert("successfully saved your property details.");
+		     // $.mobile.changePage("login.html");  //success
+		     // window.location.assign(baseurl()+"/propertylist.html");
+		    }
+		    else
+		    {
+		    	 alert("No images to view");
+		         $.mobile.changePage("newproperty.html");   //failure
+		    }
+
+		                        },
+		error: function (xhr, ajaxOptions, thrownError) {
+		//alert(xhr.status);
+		//alert(thrownError);
+		alert("Sorry! network problem");    
+		 window.location.assign(baseurl()+"/index.html");   
+		}
+
+
+	});
+}
+
+///// for new propert edit post in property list manage edit................
+$("#propertyedit").click(function(){
+
+	
+	var userid=getCookie('useridset');
+	if(userid=="" || userid==null)
+		{
+		 alert("Sorry your login expired!");
+		 window.location.assign(baseurl()+"/index.html");
+		}
+	var username=getCookie('usernameset');
+    var title=$("#addresstitle").val();
+    var address=$("#streetname").val();
+    var price=$("#asking_price").val();
+    var district=$("#district").val();
+    var type=$("#type").val();
+    var postcode=$("#postcode").val();
+    var area=$("#area").val();
+    var description=$("#description").val();
+    var description=$("#description").val();
+    var rooms=$("#rooms").val();
+    var bathrooms=$("#bathrooms").val();
+    
+    var listing_type=$("#listing_type").val();
+    var facilities=$("#facilities").val();
+    var imageprop=$("#imageget").val();
+    if(imageprop==""){imageprop=="";}
+     var guestid=userid;
+
+     var propertyid=$("#propertyid1").val();
+  
+     var cobroke=$("#cobroke").val();
+     ////
+     var a1=$("#a11").val();
+     var a2=$("#a22").val();
+     var a3=$("#a33").val();
+     var a4=$("#a44").val();
+     if(a1=="" || a1=='undefined'){a1==""}
+     if(a2=="" || a1=='undefined'){a2==""}
+     if(a3=="" || a1=='undefined'){a3==""}
+     if(a4=="" || a1=='undefined'){a4==""}
+     ////
+   // var datetravel1=$('.dtpicker-value').val();
+    //alert(datetravel+"1");
+   // alert(datetravel1+"2");
+   // if(datetravel=="")
+    	//{
+   /// var datetravel="2014-04-14";
+    	//}
+
+     //cobroke value;;;;;
+    	
+	if($('#cobroke').is(':checked'))
+	{
+		//var value=1;
+	 //  var cobroke=$('#cobroke').val(value);
+		 var cobroke=$('#cobroke').val();
+	   
+	}
+	else
+	{
+		// var value=0;
+		// var cobroke=$('#cobroke').val(value);
+		 var cobroke='0';
+	}
+	//alert(cobroke);
+	
+	////////////////
+	
+ if(title=="")
+		{
+	    	
+			alert("Title of property should not be empty!");
+			//$('#title').focus();
+			return false;
+		}
+	   else if(address=="")
+		{
+		   
+		   alert("Address should not be empty!");
+		
+		   $("#address").focus();
+			return false;	
+		}
+	   else if(price=="")
+		{
+			alert("Price for property should not be empty!");
+			$("#price").focus();
+			return false;
+		}
+	   else if(!price.match(/^\d+/))
+ {
+ alert("Please enter numeric value for price");
+	$("#price").focus();
+ return false;
+ }
+	   else if(district=="")
+		{
+			alert("district should not be empty!");
+			$("#distirct").focus();
+			return false;
+		}
+	   else if(type=="")
+		{
+			alert("Type of propertyshould not be empty!");
+			$("#type").focus();
+			return false;
+		}
+	   else if(postcode=="")
+		{
+			alert("Postcode of property should not be empty!");
+			$("#postcode").focus();
+			return false;
+		}
+	   else if(!postcode.match(/^\d+/))
+	   {
+	   alert("Please enter numeric value for postcode");
+	   return false;
+	   }
+	   else if(area=="")
+		{
+			alert("area of propertyshould not be empty!");
+			$("#area").focus();
+			return false;
+		}
+	  else if(description=="")
+		{
+		alert("description should not be empty!");
+			$("#description").focus();
+			return false;
+		}
+	   else if(rooms=="")
+		{
+			alert("Rooms of property should not be empty!");
+			$("#rooms").focus();
+			return false;
+		}
+else if(!rooms.match(/^\d+/))
+ {
+ alert("Please enter numeric value for rooms");
+ return false;
+ }
+	   else if(bathrooms=="")
+		{
+			alert("Bath rooms of property should not be empty!");
+			$("#bathrooms").focus();
+			return false;
+		}
+else if(!bathrooms.match(/^\d+/))
+ {
+ alert("Please enter numeric value for bathrooms");
+ return false;
+ }
+	   else if(facilities=="")
+		{
+			alert("facilities for property not be empty!");
+			$("#facilities").focus();
+			return false;
+		}
+	
+	 
+$.ajax({
+type: "POST",
+url: baseurl()+"/WS/p_request.php?action=update_propertyedit",  //local & server
+//url:"http://localhost/kup/WS/st_request.php?action=register",
+//url: "http://thatco.com/kup/WS/st_request.php?action=register",
+//data: "title="+title+"&address="+address+"&price="+price+"&district="+district+"&type="+type+"&postcode="+postcode+"&area="+area+"&description="+description+"&rooms="+rooms+"&bathrooms="+bathrooms+"&listing_type="+listing_type+"&guestid="+guestid+"&facilities="+facilities,
+data: "title="+title+"&address="+address+"&price="+price+"&district="+district+"&type="+type+"&postcode="+postcode+"&area="+area+"&description="+description+"&rooms="+rooms+"&bathrooms="+bathrooms+"&listing_type="+listing_type+"&imageprop="+imageprop+"&guestid="+guestid+"&a1="+a1+"&a2="+a2+"&a3="+a3+"&a4="+a4+"&id="+propertyid+"&cobroke="+cobroke,
+
+dataType: "json",
+async: 'true',
+success: function(msg) {     
+    if(msg.Result=="Success")   //message from response
+    {
+    	if(msg.record!="")
+  		{
+  		var propertyid=msg.record;
+  		
+  		}
+    	else
+    		{
+    		var propertyid="";
+      		
+    		}
+    	  setCookie('propidnew',propertyid); 
+    	   /*
+    	  if(msg.recordn)
+    		  {
+    		  //var media=recordn;
+    		  var jsonn =msg.recordn;
+    		  var data=[];
+    		  $.each(jsonn, function(idx, obj) {
+    			  var media=obj.media;
+    			  $(".foo4").append(
+    					  '<li>'+media+'</li>');
+    		  });
+    		  }
+    		  */
+     // $.mobile.ajaxEnabled = false;
+      alert("successfully Edited your property details.");
+     // $.mobile.changePage("login.html");  //success
+      window.location.assign(baseurl()+"/postpropertymanage.html");
+    }
+    else
+    {
+    	 alert("Wrong details");
+         $.mobile.changePage("newpropertyedit.html");   //failure
+    }
+
+                        },
+error: function (xhr, ajaxOptions, thrownError) {
+//alert(xhr.status);
+//alert(thrownError);
+alert("Sorry! network problem");    
+window.location.assign(baseurl()+"/index.html");
+}
+
+
+
+});
+});
+   
+////////////
+
+</script>

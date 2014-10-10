@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<title>Property</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/functionspropertyajax.js"></script>
+
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+<link rel="stylesheet" href="css/app_property.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#login_det,#register_user").hide();
+		$("#loginuser").click(function(){
+		  $("#login_det").slideToggle();
+			});
+		$(".register").click(function(){
+			  $("#register_user").slideToggle();
+			});
+		$("#loginuser").click(function(){
+			  $("#register_user").hide();
+			});
+		$("#linkedin,#fb,.gst_usr").click(function(){
+			  $("#register_user,#login_det").hide();
+			});
+		$(".register").click(function(){
+			  $("#login_det").hide();
+			});
+		});
+</script>
+</head>
+<body>
+	
+
+
+<div data-role="page" id="login">
+	<header class="header-stn"  data-role="header" data-position="fixed">
+		<div class="page_name">Mark Lim</div>
+		<div class="clearing"></div>
+	</header>
+	<section data-role="content" class="content-container">
+	<script type="text/javascript">
+	$(document).on('blur', 'input, textarea', function() {
+	    setTimeout(function() {
+	        window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+	    }, 0);
+	});
+	</script>
+		<div class="login_tle">Login to Your Account</div>
+		<div class="login_form">
+			<div class="guest" id="guest">
+				<button class="gst_usr">Guest User</button><span></span>
+			</div>
+
+<!--
+			<div class="facebook">
+				<button class="fb_usr" id="fb">Facebook</button><span></span>
+			</div>
+			<div class="linkedin">
+				<button class="lnkd_usr" id="linkedin">Linkedin</button><span></span>
+			</div>
+
+-->
+			<div class="loginusr">
+				<button class="login_usr" id="loginuser">Login</button><span class="lgin"></span>
+				<form id="login_det">
+					<fieldset data-role="fieldcontain" class="ui-hide-label">
+						<label for="username">Username:</label>
+						<input type="text" name="email" id="email" placeholder="User ID">
+					</fieldset>
+					<fieldset data-role="fieldcontain" class="ui-hide-label">
+						<label for="password">Password:</label>
+						<input type="password" name="password" id="password" placeholder="Password">
+					</fieldset>
+					<button class="login" id="login_guest1" >login</button> <!-- login_linkedinas id -->
+				</form>
+			</div>
+			<div id="register" class="registeruser">
+				<button class="register">Register</button>
+				<span></span>
+			  <form id="register_user" action="" method="post">
+						<fieldset data-role="fieldcontain" class="ui-hide-label">
+						<label for="email">Email ID *:</label>
+						<input type="email" name="email" id="email1" placeholder="Email ID">
+					</fieldset>
+					<!--  
+					<fieldset data-role="fieldcontain" class="ui-hide-label">
+						<label for="UserID">User ID</label>
+						<input type="text" name="email" id="userid" placeholder="User ID">
+					</fieldset>
+					-->
+					<fieldset data-role="fieldcontain" class="ui-hide-label">
+						<label for="password">Password *:</label>
+						<input type="password" name="password" id="password1" placeholder="Password">
+					</fieldset>
+					<fieldset data-role="fieldcontain" class="ui-hide-label">
+						<label for="name">Name *</label>
+						<input type="text" name="name" id="username" placeholder="Name">
+					</fieldset>
+					<fieldset data-role="fieldcontain" class="ui-hide-label">
+						<label for="mobile">Mobile No *:</label>
+						<input type="text" name="mobile" id="mobile" placeholder="Mobile No">
+					</fieldset>
+					
+					<fieldset data-role="fieldcontain" class="ui-hide-label">
+						<label for="mobile">Address *:</label>
+						<input type="text" name="address" id="address" placeholder="Address">
+					</fieldset>
+					
+					
+					
+					<!--  <form id="uploadForm1" action="" method="post">  -->
+					 	<fieldset data-role="fieldcontain" class="ui-hide-label">
+						<label for="upload">Upload photo:</label>
+						<input name="userImage1" id="userImage1" type="file"  placeholder="Upload photo"/>
+					    </fieldset>
+		
+			
+					   <button class="login" id="register_submit">SUBMIT</button>
+					
+				<!-- </form>  -->
+				 </form> 
+			</div>	 
+					
+		</div>
+		
+		
+	</section>
+
+	<!-- <footer data-role="footer" data-position="fixed"></footer> -->
+</div>
+</body>
+</html>
+<script type="text/javascript"> 
+$(document).ready(function(){
+	///setCookie('useridset','');
+	///setCookie('usernameset','');
+	///setCookie('loginas','');
+	//setCookie('agentid','');
+	//setCookie('userreg','');
+	///setCookie('propid','');
+	setCookie('useridset','');
+	setCookie('usernameset','');
+	setCookie('loginas','');
+	setCookie('userimageset','');
+	setCookie('propid','');
+	setCookie('agentnamefromdb','');
+	setCookie('agentimagefromdb','');
+	
+	
+	///////////////////
+	setCookie('img_propertylistimage','');
+	setCookie('img_agentuserimage','');
+	/////////////////
+		});
+</script>

@@ -1,0 +1,514 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<title>Property</title>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/functionspropertyajax.js"></script>
+
+
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.css" />
+<link rel="stylesheet" href="css/app_property.css" />
+<link rel="stylesheet" href="css/fonts.css" />
+</head>
+<body>
+<script>
+  $(document).on({
+          ajaxStart: function() { 
+          //  $.mobile.loading('show');
+          //  console.log('getJSON starts...');
+          },
+          ajaxStop: function() {
+          //  $.mobile.loading('hide');
+          //  console.log('getJSON ends...');
+          }    
+        });
+</script>
+<div data-role="page" id="chat" class="ui-responsive-panel">
+	<header class="header-stn"  data-role="header" data-position="fixed">
+		<!-- <a href="javascript:history.back()" class="hddiv ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all goback"></a> -->
+	<a href="#nav-panel" class="hddiv slide_menu bar" data-icon="bars" data-ajax="false"></a>
+		<div class="apn_brf hddiv div">
+			<a href="#" class="appoin_brf" data-ajax="false" id="propertylist"><span></span></a>
+		</div>
+		<div class="apn_apnt hddiv div">
+			<a href="#" class="appoin_apnt" title="chat" data-ajax="false" id="testmsg"><span></span></a>
+		</div>
+		<div class="apn_ple hddiv div">
+			<a href="#" class="appoin_ple" title="aboutus" data-ajax="false" id="about1"><span></span></a>
+		</div>
+		<a href="#" class="slide_menu plus" data-icon="plus" data-ajax="false"  id="testnewprop1"></a>
+		<div class="clearing"></div>
+	</header>
+	<section data-role="content" class="content-container" style="padding:5px;">
+	<script type="text/javascript">
+	$(document).on('blur', 'input, textarea', function() {
+	    setTimeout(function() {
+	        window.scrollTo(document.body.scrollLeft, document.body.scrollTop);
+	    }, 0);
+	});
+	</script>
+	
+		<div class="chat_content">
+		<!-- 
+			<div class="dial_front">
+				<div class="msg_front">
+					<input type="text" value="Hi...Are you there..."/>
+				
+				</div>
+			</div>
+			<div class="dial_other">
+				<div class="msg_other">
+					<input type="text" value="yes, How are you."/>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="dial_front">
+				<div class="msg_front">
+					<input type="text" value="hmmm fine..."/>
+				
+				</div>
+			</div>
+			<div class="dial_other">
+				<div class="msg_other">
+					<input type="text" value="Shall we meet?"/>
+					
+				</div>
+			</div>
+			 -->
+			 	<!-- <img src="images/chat_curve.png"> -->
+			<div class="clear"></div>
+		</div>
+
+		
+	</section>
+	<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="nav-panel" class="navpan">
+			<div class="myprf">
+			<div class="img" class="img1"></div>
+			<div class="name"></div><div class="clear"></div>	
+		</div>
+		<ul data-role="listview" class="clpslst">
+			<li><a href="#" class="postpropertylist" data-ajax="false">Property Listings</a></li>
+			<li><a href="#" class="managelist">Manage Listing</a></li>
+			<li><a href="#" class="messages">Messages</a></li>
+			<li><a href="#" class="appointment">Make an Appointment</a></li>
+			<li><a href="#" class="news">News</a></li>
+		</ul>
+		<div class="appshare" id="appshareroot" data-role="collapsible" data-iconpos="right"><h3>APPS</h3>
+	   		<ul data-role="listview"><li id="appshare1"><a href="#popupCloseRight" data-rel="popup">share</a><span class="autop"></span></li><li id="apppost1"><a>autopost</a><span class="share"></span></li></ul>
+		</div>
+		<div class="navprof" id="profile" data-role="collapsible" data-iconpos="right"><h3>Profile</h3>
+	   		<ul data-role="listview"><li id="profile1"><a>account settings</a></li><li id="logoutpp"><a>logout</a></li><li id="exitpp"><a>Exit</a></li></ul>
+		</div>
+		<div data-role="popup" id="popupCloseRight" class="ui-content" style="width:250px">
+	    	<a href="#" data-rel="back" class="closemail ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	    	<input type="text" id="emailshare1" placeholder="enter the email id..."/>
+	    	<a class="sendmail" href="#"><span class="iconmail ui-btn-icon-notext ui-icon-mail"></span><span class="sendtxt">Send</span></a>
+		</div>
+	</div>
+	<!-- <footer data-role="footer" data-position="fixed"></footer> -->
+</div>
+</body>
+</html> 
+  <noscript> <meta http-equiv="refresh" content="20">    </noscript>
+<script type="text/javascript"> 
+$(document).ready(function(){
+	
+	var userid=getCookie('useridset');
+
+	if(userid=="" || userid==null)
+		{
+		 alert("Sorry your login expired!");
+		 window.location.assign(baseurl()+"/index.html");
+		}
+
+	////////////////
+	
+               
+	///////////////////
+	//redirect to app after 5 seconds
+    	//window.setTimeout(function() {
+	   //window.location.href = 'chat.html';
+    		//  $('.chat_content').html('refresh');
+
+     // }, 15000); //5000
+   // setTimeout(getallchatlist, 5000);
+    
+   // window.setTimeout(function(){ document.location.reload(true); }, 15000);
+    
+getallchatlist();
+$(document).on('click', '#chat_text',function(){
+
+	//var tim1=15000;
+	//clearTimeout(tim1);
+});
+$('#chat_text').change(function(){ 
+	//alert("1212");
+	//var tim1=15000;
+	//clearTimeout(tim1);
+});
+
+setInterval(function(){getallchatlist()}, 10000);
+/////
+ //setInterval(function() {
+//$(".chat_content").load();  ///3 seconds
+ //}, 3000);
+ ///////
+});
+
+function getallchatlist()
+{
+	var chatid=getCookie('chatid');  //from_id  list...
+
+	var userid=getCookie('useridset'); //mine present to
+	$.ajax({
+		type: "POST",
+		url: baseurl()+"/WS/p_request.php?action=getidmessages",  //local & server
+		data:"id="+chatid+"&tomine="+userid,
+	    dataType: "json",
+		async: 'true',
+		success: function(msg) {     
+		    if(msg.Result=="Success")   //message from response
+		    {
+		    	var chat_val=$("#chat_text").val(); 
+		    	 var json =msg.recordn;
+			    
+			      // $.mobile.changePage("propertydetails.html",{data1:json});   //,reqid:json_req}
+			      //   $( document ).on( "pagebeforechange" , function ( event, data ) {
+			        	
+			     //   if ( data.toPage[0].id == "propertyadetails" ) {
+			 	 // var stuff3 = data.options.data1;
+			 	      var stuff3=json;
+			 	    
+			 	   
+			 	     var data=[];
+			 	       $('.chat_content').html('');
+			 	  
+			 	      var chatid=getCookie('chatid');
+			 	     
+			 	       $.each(stuff3, function(idx, obj) {
+			 	         	var from_id=obj.from_id;
+			 	        	var to_id=obj.to_id;
+			 	        	var name=obj.name;
+			 	        	var image=obj.image;
+			 	        	var message=obj.message;
+			 	         	var created_date=obj.created_date;
+			 	         	var userid=getCookie('useridset');
+                        
+			 	       	if(from_id==userid)
+			 	       	{
+				 	       	nameput="me";
+                                   $(".chat_content").append(
+					 	           
+					 	           '<div class="dial_front">'+
+				                       '<div class="msg_front">'+
+				                       '<div class="point"></div>'+
+					               //    '<input type="text" value="'+message+'"/><span>'+nameput+'</span>'+
+					               // '<textarea>'+message+'</textarea><span class="own_name">'+nameput+'</span>'+
+					               '<label>'+message+'</label><span class="own_name">'+nameput+'</span>'+
+					                  // '<input type="hidden" value="'+from_id+'" id="fromid" name="fromid" />'+
+					                  '<input type="hidden" value="'+chatid+'" id="fromid" name="fromid" />'+
+				                       '</div>'+
+			                         '</div>'+
+			                         '<div class="clear"></div>'
+					 	           );
+			 	       	}
+			 	       	else
+			 	       	{
+				 	       	nameput=name;
+
+				 	           $(".chat_content").append(
+						 	           
+						 	           '<div class="dial_other">'+
+					                       '<div class="msg_other">'+
+					                       '<div class="point"></div>'+
+						                  // '<input type="text" value="'+message+'"/><span>'+nameput+'</span>'+
+						                   //'<textarea>'+message+'</textarea><span class="end_name">'+nameput+'</span>'+
+						                   '<label>'+message+'</label><span class="end_name">'+nameput+'</span>'+
+						                  // '<input type="hidden" value="'+from_id+'" id="fromid" name="fromid" />'+
+						                  '<input type="hidden" value="'+chatid+'" id="fromid" name="fromid" />'+
+					                       '</div>'+
+				                         '</div>'+
+				                         '<div class="clear"></div>'
+						 	           );
+
+					 	        /* 
+					 	       setInterval(function() {
+				                    var randomnumber = Math.floor(Math.random() * 100);
+				                    $('.chat_content').append(
+				                    		   '<div class="dial_other">'+
+						                       '<div class="msg_other">'+
+						                       '<div class="point"></div>'+
+							                  // '<input type="text" value="'+message+'"/><span>'+nameput+'</span>'+
+							                   //'<textarea>'+message+'</textarea><span class="end_name">'+nameput+'</span>'+
+							                   '<label>'+message+'</label><span class="end_name">'+nameput+'</span>'+
+							                  // '<input type="hidden" value="'+from_id+'" id="fromid" name="fromid" />'+
+							                  '<input type="hidden" value="'+chatid+'" id="fromid" name="fromid" />'+
+						                       '</div>'+
+					                         '</div>'+
+					                         '<div class="clear"></div>'
+				                                    );
+				                }, 3000);
+				                */
+			 	       	}
+			 	      
+			       /*
+			 	           $(".chat_content").append(
+					 	           
+					 	           '<div class="dial_front">'+
+				                       '<div class="msg_front">'+
+					                   '<input type="text" value="'+message+'"/><span>'+nameput+'</span>'+
+					                  // '<input type="hidden" value="'+from_id+'" id="fromid" name="fromid" />'+
+					                  '<input type="hidden" value="'+chatid+'" id="fromid" name="fromid" />'+
+				                       '</div>'+
+			                         '</div>'
+					 	           );
+			 	    */       
+
+			 	           ///chat page
+			 	        //  $(".chatlist").click(function(){
+			 	        	// var id=$(this).attr('id');
+			 	    		// window.location.assign(baseurl()+"/chat.html");
+			 	    	//});
+
+			 	           //
+			 	       });
+			 	      $(".chat_content").append('<div class="msg_other" id="msg_save"></div><div class="mesg_type"><div class="txt_type"><div class="msg_front"><textarea name="chat_text" id="chat_text"></textarea></div><div class="btn_snd"><input type="button" name="send_msg_btn" id="send_msg_btn" value="send"></div><div class="clear"></div></div></div>');
+			 	     // $(".chat_content").append('<div class="msg_other" id="msg_save"></div><div class="mesg_type"><div class="txt_type"><div class="msg_front"><label name="chat_text" id="chat_text"></label></div><div class="btn_snd"><input type="button" name="send_msg_btn" id="send_msg_btn" value="send"></div><div class="clear"></div></div></div>');
+			 	     
+			 	     	var all_chat='';
+			 	     	var count=1;
+				 	          $("#send_msg_btn").click(function()
+			 	        		{
+                                        var chat_val=$("#chat_text").val(); 
+                                       // var fromid=$("#fromid").val();  //c
+                                         var fromid=getCookie('chatid'); 
+			 	        	
+			 	                        if(chat_val!="" || chat_val!=null)
+			 	        				{
+			 	        			   
+			 	        		       //  $("#msg_save").append('<div class="msg_other"><textarea class="message_recent expand" id="per_msg'+count+'" >'+chat_val+'</textarea><span class="end_name">'+'me'+'</span></div><br/>');
+                                          ///before ...class="sndmasg"
+
+					 	        		        $("#msg_save").append('<div class="msg_front"><div class="point"></div><label class="message_recent expand" id="per_msg'+count+'" >'+chat_val+'</label><span class="end_name">'+'me'+'</span></div><div class="clear"></div>');
+	                                          
+				 	        				}
+
+                                     if(chat_val=="")
+                                     {
+                                    	
+                                         $('#msg_save').html('');
+                                     }
+
+
+
+
+                                        
+			 	                       $("#chat_text").val("");
+				 	        		   per_chat=$("#per_msg"+count).val(); 
+
+				 	        		   
+							 	     
+			 	        		    var userid=getCookie('useridset');
+			 	        		 //	var len = $('#msg_save textarea').length;  //previously input............
+			 	        		//    var len1 = $('#msg_save textarea').val();
+			 	        		//	for(i=1;i<=len;i++)
+			 	        			//	{
+			 	        			//	per_chat=$("#per_msg"+i).val();
+			 	        				//var getuserid=$(this).attr('id');
+			 	        				//alert(getuserid+";;;;;;;;;");
+			 	        			//	var count=i;
+			 	        			//	if(per_chat!="")
+			 	        			if(chat_val!="" || chat_val!=null)
+			 	        				{
+				 	        				
+			 	        					 savechat(userid,fromid,chat_val);
+			 	        				} 
+			 	        				//}
+			 	        			
+			 	        			
+			 	        		});	
+
+			 	        	
+
+			 	        		$('#chat_text').keypress(function(e) {
+			 	        			   if(e.which == 13) {
+			 	        			    $(this).blur();
+			 	        			    $('#send_msg_btn').focus().click();
+			 	        			   }
+			 	        			  });
+/*
+			 	        		$("#send_msg_btn").click(function(){
+			 	        			
+			 	        			var getuserid=$(this).attr('id');
+			 	        			var username=$('#username').val();
+			 	        			//alert(getuserid+"{{{{{{{{{{");
+			 	        			var len = $('#msg_save textarea').length;  //previously input............
+			 	        		    var len1 = $('#msg_save textarea').val();
+			 	        			for(i=1;i<=len;i++)
+			 	        				{
+			 	        				per_chat=$("#per_msg"+i).val();
+			 	        				//var getuserid=$(this).attr('id');
+			 	        				//alert(getuserid+";;;;;;;;;");
+			 	        				var count=i;
+			 	        				if(per_chat!="")
+			 	        				{
+			 	        					 savechat(getuserid,per_chat,username);
+			 	        				} 
+			 	        				}
+			 	        			
+			 	        		});
+			 	        		*/
+			 	        		 
+			 	        		 if(chat_val!="")
+			 	        		 {
+				 	        		 var t=chat_val;
+				 	        		 $("#chat_text").val(t);
+			 	        		 }					 		     
+		    }
+		    else
+		    {
+		    	// alert("No messages in chat list!");
+		        // alert("No chat message between you (& me) up to now!"); //first time chat, .....communication, ......if want will keep.
+		        //$(".chat_content").append('<div class="dial_other"> <div class="msg_other" id="msg_save"></div></div><div class="mesg_type"><div class="msg_front"><textarea name="chat_text" id="chat_text"></textarea></div><div class="btn_snd"><input type="button" name="send_msg_btn" id="send_msg_btn" value="send"></div></div></div>');
+		    $(".chat_content").append('<div class="msg_other" id="msg_save"></div><div class="mesg_type"><div class="txt_type"><div class="msg_front"><textarea name="chat_text" id="chat_text"></textarea></div><div class="btn_snd"><input type="button" name="send_msg_btn" id="send_msg_btn" value="send"></div><div class="clear"></div></div></div>');
+		 	     
+		 	     	var all_chat='';
+		 	     	var count=1;
+			 	          $("#send_msg_btn").click(function()
+		 	        		{
+                                 var chat_val=$("#chat_text").val(); 
+                               //  var fromid=$("#fromid").val();  //c
+                                 var fromid=getCookie('chatid'); 
+		 	        			
+		 	                        if(chat_val!="" || chat_val!=null)
+		 	        				{
+		 	        			   
+		 	        		      //$("#msg_save").append('<div class="sndmasg"><textarea class="message_recent expand" id="per_msg'+count+'" >'+chat_val+'</textarea></div><br/>');
+			 	                  //$("#msg_save").append('<div class="sndmasg"><textarea class="message_recent expand" id="per_msg'+count+'" >'+chat_val+'</textarea></div><span class="end_name">'+'me'+'</span><br/>');
+			 	        		 
+			 	        		 //   $("#msg_save").append('<div class="msg_other"><textarea class="message_recent expand" id="per_msg'+count+'" >'+chat_val+'</textarea><span class="end_name">'+'me'+'</span></div><br/>');
+			 	        		    //    $("#msg_save").append('<div class="msg_other"><label class="message_recent expand" id="per_msg'+count+'" >'+chat_val+'</label><span class="end_name">'+'me'+'</span></div><br/>');
+					                                  
+			 	        		        $("#msg_save").append('<div class="msg_front"><div class="point"></div><label class="message_recent expand" id="per_msg'+count+'" >'+chat_val+'</label><span class="end_name">'+'me'+'</span></div><div class="clear"></div>');
+
+			 	        				}
+		 	                       if(chat_val=="")
+                                   {
+                                  	
+                                       $('#msg_save').html('');
+                                   }
+
+
+                                   $("#chat_text").val("");
+			 	        		   per_chat=$("#per_msg"+count).val(); 
+
+			 	        		   
+						 	      var userid=getCookie('useridset');
+		 	        		
+		 	        			if(chat_val!="" || chat_val!=null)
+		 	        				{
+			 	        				
+		 	        					 savechat(userid,fromid,chat_val);
+		 	        				} 
+		 	        				//}
+		 	        			
+		 	        			
+		 	        		});	
+
+		 	        	
+
+		 	        		$('#chat_text').keypress(function(e) {
+		 	        			   if(e.which == 13) {
+		 	        			    $(this).blur();
+		 	        			    $('#send_msg_btn').focus().click();
+		 	        			   }
+		 	        			  });
+
+		        //  $.mobile.changePage("messages.html");   //failure
+		       //  window.location.assign(baseurl()+"/messages.html");
+		    }
+
+		                        },
+		error: function (xhr, ajaxOptions, thrownError) {
+		//alert(xhr.status);
+		//alert(thrownError);
+		alert("Sorry! network problem");    
+		window.location.assign(baseurl()+"/index.html");
+		}
+
+
+
+		});
+}
+
+	function savechat(userid,fromid,perchat)
+	{
+		var username=getCookie('usernameset');
+	    var from_id=userid;
+	    var to_id=fromid;
+	    var image=getCookie('userimageset');
+	    if(image==""){image="";}
+
+	    var usertype=getCookie('loginas');
+	    var message=perchat;
+	   if(message!="")
+	   {
+
+//to change date format before save.........
+/*
+	      //   var m_names = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+	          
+	          var m_names = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+
+	    		var d = new Date();
+	    		var curr_date = d.getDate();
+	    		var curr_month = d.getMonth();
+	    		var curr_year = d.getFullYear();
+	    		var date1=curr_date+" "+m_names[curr_month]+ " " + curr_year;
+	    		
+*/
+	    		
+	    $.ajax({
+	    	type: "POST",
+	    	url: baseurl()+"/WS/p_request.php?action=getsavemessages",  //local & server
+	     //	data: "from_id="+from_id+"&to_id="+to_id+"&name="+username+"&message="+message+"&image="+image+"&date1="+date1,
+	    	data: "from_id="+from_id+"&to_id="+to_id+"&name="+username+"&message="+message+"&image="+image+"&usertype="+usertype,
+
+	    	dataType: "json",
+	    	async: 'true',
+	    	success: function(msg) {     
+	    	    if(msg.Result=="Success")   //message from response
+	    	    {
+	    	    	
+	    	      //alert("successfully send your chat message.");   //if want will keep this....chat
+	    	      // window.location.assign(baseurl()+"/chat.html");
+	    	    }
+	    	    else
+	    	    {
+	    	    	 alert("Sorry some problem in sending chat message!");
+	    	    	 window.location.assign(baseurl()+"/messages.html"); //failure
+	    	    }
+
+	    	                        },
+	    	error: function (xhr, ajaxOptions, thrownError) {
+	    	//alert(xhr.status);
+	    	//alert(thrownError);
+	    	alert("Sorry! network problem");    
+	    	window.location.assign(baseurl()+"/index.html");
+	    	}
+
+
+
+	    	});
+	   }
+	   else
+	   {
+		   alert("Please enter the message chat!");
+		   return false;
+	   }
+	}
+</script>
